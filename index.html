@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Football TV Guide</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      margin: 0;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      color: #0f172a;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .controls {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.75rem;
+      color: #475569;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    input, select {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      outline: none;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    input:focus, select:focus {
+      border-color: #2563eb !important;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background-color: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .time {
+      font-size: 0.875rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .score-badge {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .score-low {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1;
+    }
+
+    .score-mid {
+      background-color: #f0f9ff !important;
+      border-color: #bae6fd !important;
+    }
+
+    .score-good {
+      background-color: #e0f2fe !important;
+      border-color: #7dd3fc !important;
+    }
+
+    .card.score-high {
+       background-color: #2563eb !important;
+       color: #ffffff !important;
+    }
+    .card.score-high .time,
+    .card.score-high .matchup,
+    .card.score-high .network {
+      color: #ffffff !important;
+    }
+
+    .score-elite {
+      background-color: #0f172a !important;
+      color: #ffffff !important;
+      border: 1px solid #1e293b;
+    }
+    .card.score-elite .time,
+    .card.score-elite .matchup,
+    .card.score-elite .network {
+      color: #ffffff !important;
+    }
+
+    .matchup {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #0f172a !important;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .network {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .no-games {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #64748b;
+      margin-top: 48px;
+      font-size: 1.1rem;
+    }
+  </style>
+  <script data-goatcounter="https://cfb-guide.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header>
+    <h1>College 🏈 TV Guide</h1>
+    <p style="font-size: 0.75rem;">Some FCS and G6 games are omitted. Neutral site games appear without site location. All times Central.</p>
+  </header>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="datePicker">Date</label>
+      <select id="datePicker"></select>
+    </div>
+
+    <div class="control-group">
+      <label for="scoreFilter">Minimum Watch Score</label>
+      <select id="scoreFilter">
+        <option value="0" selected>All Games (0+)</option>
+        <option value="5">I Am Bored (5+)</option>
+        <option value="11">Beats Yardwork (11+)</option>
+        <option value="18">Heck Yes! (18+)</option>
+        <option value="22">Risk Divorce (22+)</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="sortBy">Sort By</label>
+      <select id="sortBy">
+        <option value="time">Game Time</option>
+        <option value="score">Score (High to Low)</option>
+        <option value="network">Network (A–Z)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid" id="gamesGrid"></div>
+
+  <script>
+    let allGames = [];
+
+    // 1. Date formatting helper for nice dropdown labels (e.g. "Sat, Aug 29, 2026")
+    function formatDateLabel(dateStr) {
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const dateObj = new Date(year, month - 1, day);
+      return dateObj.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    }
+
+    // 2. Helper to find nearest future date
+    function getNearestFutureDate(games) {
+      if (!games || games.length === 0) return '';
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const todayStr = `${year}-${month}-${day}`;
+
+      const uniqueDates = [...new Set(games.map(g => g.date))].sort();
+      const nextFutureDate = uniqueDates.find(d => d >= todayStr);
+      return nextFutureDate || uniqueDates[uniqueDates.length - 1];
+    }
+
+    // 3. Helper to convert time strings (e.g., "2:30pm") into minutes for chronological sorting
+    function parseTimeString(timeStr) {
+      if (!timeStr) return 0;
+      const match = timeStr.trim().match(/^(\d+):(\d+)\s*(am|pm)$/i);
+      if (!match) return 0;
+      let hours = parseInt(match[1], 10);
+      const minutes = parseInt(match[2], 10);
+      const period = match[3].toLowerCase();
+
+      if (period === 'pm' && hours < 12) hours += 12;
+      if (period === 'am' && hours === 12) hours = 0;
+
+      return hours * 60 + minutes;
+    }
+
+    // 4. Color class badge selector
+    function getScoreClass(score) {
+      if (score >= 22) return 'score-elite';
+      if (score >= 18) return 'score-high';
+      if (score >= 11) return 'score-good';
+      if (score >= 5)  return 'score-mid';
+      return 'score-low';
+    }
+
+    // 5. Render function
+    function renderGames() {
+      const selectedDate = document.getElementById('datePicker').value;
+      const minScore = parseInt(document.getElementById('scoreFilter').value, 10);
+      const sortCriteria = document.getElementById('sortBy').value;
+      const grid = document.getElementById('gamesGrid');
+      grid.innerHTML = '';
+
+      let filtered = allGames.filter(game => {
+        const matchesDate = !selectedDate || game.date === selectedDate;
+        const matchesScore = (game.score || 0) >= minScore;
+        return matchesDate && matchesScore;
+      });
+
+      filtered.sort((a, b) => {
+        if (sortCriteria === 'score') {
+          return (b.score || 0) - (a.score || 0);
+        } else if (sortCriteria === 'network') {
+          return (a.network || '').localeCompare(b.network || '');
+        } else {
+          return parseTimeString(a.time) - parseTimeString(b.time);
+        }
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-games">No games match your filters.</div>';
+        return;
+      }
+
+      filtered.forEach(game => {
+        const scoreClass = getScoreClass(game.score || 0);
+        const card = document.createElement('div');
+        card.className = `card ${scoreClass}`;
+        card.innerHTML = `
+          <div class="card-header">
+            <span class="time">${game.time}</span>
+            <span class="score-badge ${scoreClass}">Score: ${game.score}</span>
+          </div>
+          <div class="matchup">${game.matchup}</div>
+          <div class="network">📺 ${game.network}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // 6. Fetch and load games
+    async function loadGames() {
+      try {
+        const response = await fetch('games.json');
+        allGames = await response.json();
+        
+        if (allGames && allGames.length > 0) {
+          const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
+
+          const dateSelect = document.getElementById('datePicker');
+          dateSelect.innerHTML = '';
+          
+          uniqueDates.forEach(date => {
+            const option = document.createElement('option');
+            option.value = date;
+            option.textContent = formatDateLabel(date);
+            dateSelect.appendChild(option);
+          });
+
+          const defaultDate = getNearestFutureDate(allGames);
+          dateSelect.value = defaultDate;
+        }
+
+        renderGames();
+      } catch (err) {
+        console.error('Error loading games:', err);
+      }
+    }
+
+    // 7. Event Listeners
+    document.getElementById('datePicker').addEventListener('change', renderGames);
+    document.getElementById('scoreFilter').addEventListener('change', renderGames);
+    document.getElementById('sortBy').addEventListener('change', renderGames);
+
+    // Initialize
+    loadGames();
+  </script>
+</body>
+</html>
