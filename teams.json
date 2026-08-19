@@ -1,0 +1,1194 @@
+{
+  "Abilene Christian": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Air Force": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Akron": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Alabama": {
+    "teamValue": 10,
+    "confValue": 3
+  },
+  "Alabama A&M": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Alabama State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Albany": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Alcorn": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Alcorn State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "App State": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Appalachian State": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Arizona": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "Arizona State": {
+    "teamValue": 7,
+    "confValue": 2
+  },
+  "Arkansas": {
+    "teamValue": 6,
+    "confValue": 3
+  },
+  "Arkansas State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Arkansas-Pine Bluff": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Army": {
+    "teamValue": 5,
+    "confValue": 1
+  },
+  "Auburn": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Austin Peay": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Ball State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Baylor": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "Bethune Cookman": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Bethune-Cookman": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Boise State": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "Boston College": {
+    "teamValue": 2,
+    "confValue": 2
+  },
+  "Bowling Green": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Brown": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Bryant": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Bucknell": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Buffalo": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "BYU": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "Cal": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "Cal Poly": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "California": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "Campbell": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "CCSU": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Central Arkansas": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Central Connecticut": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Central Michigan": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Charleston Southern": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Charlotte": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Chattanooga": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Cincinnati": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "Clemson": {
+    "teamValue": 7,
+    "confValue": 2
+  },
+  "Coastal Carolina": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "Colgate": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Colorado": {
+    "teamValue": 2,
+    "confValue": 2
+  },
+  "Colorado State": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Columbia": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Cornell": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Dartmouth": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Delaware": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "Delaware State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Drake": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Duke": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "Duquesne": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "East Carolina": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "East Tennessee State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "East Texas A&M": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Eastern Illinois": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Eastern Kentucky": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Eastern Michigan": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Eastern Washington": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Elon": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "ETSU": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "FIU": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Florida": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Florida A&M": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Florida Atlantic": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Florida International": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Florida State": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "Fordham": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Fresno State": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "FSU": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "Furman": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Gardner-Webb": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Georgetown": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Georgia": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Georgia Southern": {
+    "teamValue": 4,
+    "confValue": 1
+  },
+  "Georgia State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Georgia Tech": {
+    "teamValue": 9,
+    "confValue": 2
+  },
+  "Grambling": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Grambling State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Hampton": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Harvard": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Hawaii": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "Hawai'i": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "Holy Cross": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Houston": {
+    "teamValue": 9,
+    "confValue": 2
+  },
+  "Houston Baptist": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Houston Christian": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Howard": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Idaho": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Idaho State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Illinois": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "Illinois State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Incarnate Word": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Indiana": {
+    "teamValue": 8,
+    "confValue": 3
+  },
+  "Indiana State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Iona": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Iowa": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "Iowa State": {
+    "teamValue": 3,
+    "confValue": 2
+  },
+  "Jackson State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Jacksonville State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "James Madison": {
+    "teamValue": 5,
+    "confValue": 1
+  },
+  "Kansas": {
+    "teamValue": 4,
+    "confValue": 2
+  },
+  "Kansas State": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "Kennesaw State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Kent State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Kentucky": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "Lafayette": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Lamar": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Lehigh": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Liberty": {
+    "teamValue": 4,
+    "confValue": 1
+  },
+  "Limestone": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Lindenwood": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "LIU": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Louisiana Lafayette": {
+    "teamValue": 5,
+    "confValue": 1
+  },
+  "Louisiana Monroe": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Louisiana Tech": {
+    "teamValue": 7,
+    "confValue": 1
+  },
+  "Louisville": {
+    "teamValue": 9,
+    "confValue": 2
+  },
+  "LSU": {
+    "teamValue": 20,
+    "confValue": 3
+  },
+  "Maine": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Marist": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Marshall": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Maryland": {
+    "teamValue": 4,
+    "confValue": 3
+  },
+  "Massachusetts": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "McNeese": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "McNeese State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Memphis": {
+    "teamValue": 4,
+    "confValue": 1
+  },
+  "Mercer": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Mercyhurst": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Merrimack": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Miami": {
+    "teamValue": 9,
+    "confValue": 2
+  },
+  "Miami (FL)": {
+    "teamValue": 9,
+    "confValue": 2
+  },
+  "Miami (OH)": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Miami Ohio": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Michigan": {
+    "teamValue": 8,
+    "confValue": 3
+  },
+  "Michigan State": {
+    "teamValue": 6,
+    "confValue": 3
+  },
+  "Middle Tennessee": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Minnesota": {
+    "teamValue": 6,
+    "confValue": 3
+  },
+  "Mississippi College": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Mississippi State": {
+    "teamValue": 5,
+    "confValue": 3
+  },
+  "Mississippi Valley State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Missouri": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "Missouri State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Monmouth": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Montana": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Montana State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Morehead State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Morehouse": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Morgan State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "MTSU": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Murray State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "MVSU": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Navy": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "NC A&T": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "NC Central": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "NC State": {
+    "teamValue": 7,
+    "confValue": 2
+  },
+  "Nebraska": {
+    "teamValue": 8,
+    "confValue": 3
+  },
+  "Nevada": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "New Hampshire": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "New Mexico": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "New Mexico State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Nicholls": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Nicholls State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Norfolk State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "North Alabama": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "North Carolina": {
+    "teamValue": 5,
+    "confValue": 2
+  },
+  "North Carolina A&T": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "North Carolina Central": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "North Dakota": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "North Dakota State": {
+    "teamValue": 5,
+    "confValue": 1
+  },
+  "North Texas": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "Northeastern": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Northern Arizona": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Northern Colorado": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Northern Illinois": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Northern Iowa": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Northwestern": {
+    "teamValue": 5,
+    "confValue": 3
+  },
+  "Northwestern State": {
+    "teamValue": 2,
+    "confValue": 0
+  },
+  "Notre Dame": {
+    "teamValue": 9,
+    "confValue": 1
+  },
+  "Ohio": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Ohio State": {
+    "teamValue": 10,
+    "confValue": 3
+  },
+  "Oklahoma": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Oklahoma State": {
+    "teamValue": 6,
+    "confValue": 2
+  },
+  "Old Dominion": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Ole Miss": {
+    "teamValue": 10,
+    "confValue": 3
+  },
+  "Oregon": {
+    "teamValue": 10,
+    "confValue": 3
+  },
+  "Oregon State": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "Penn": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Penn State": {
+    "teamValue": 10,
+    "confValue": 3
+  },
+  "Pikeville": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Pitt": {
+    "teamValue": 10,
+    "confValue": 2
+  },
+  "Pittsburgh": {
+    "teamValue": 10,
+    "confValue": 2
+  },
+  "Portland State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Prairie View": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Prairie View A&M": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Presbyterian": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Princeton": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Purdue": {
+    "teamValue": 3,
+    "confValue": 3
+  },
+  "Rhode Island": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Rice": {
+    "teamValue": 5,
+    "confValue": 1
+  },
+  "Richmond": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Robert Morris": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Rutgers": {
+    "teamValue": 2,
+    "confValue": 3
+  },
+  "Sacramento State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Sacred Heart": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Saint Francis": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Sam Houston": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Sam Houston State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Samford": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "San Diego": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "San Diego State": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "San Jose State": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "SC State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "SE Louisiana": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "SEMO": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "SMU": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "South Alabama": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "South Carolina": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "South Carolina State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "South Dakota": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "South Dakota State": {
+    "teamValue": 5,
+    "confValue": 0
+  },
+  "South Florida": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Southeast Missouri State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Southeastern Louisiana": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Southern": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Southern Illinois": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Southern Miss": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Southern Mississippi": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Southern Utah": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Stanford": {
+    "teamValue": 4,
+    "confValue": 2
+  },
+  "Stephen F. Austin": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Stetson": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Stony Brook": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Syracuse": {
+    "teamValue": 6,
+    "confValue": 2
+  },
+  "Tarleton": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Tarleton State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "TCU": {
+    "teamValue": 7,
+    "confValue": 2
+  },
+  "Temple": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Tennessee": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Tennessee State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Tennessee Tech": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Texas": {
+    "teamValue": 10,
+    "confValue": 3
+  },
+  "Texas A&M": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Texas A&M-Commerce": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Texas Southern": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Texas State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Texas Tech": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "The Citadel": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Toledo": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "Towson": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Troy": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Tulane": {
+    "teamValue": 10,
+    "confValue": 1
+  },
+  "Tulsa": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "UAB": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "UC Davis": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "UAPB": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "UCF": {
+    "teamValue": 6,
+    "confValue": 2
+  },
+  "UCLA": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "UConn": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "UL Monroe": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "ULM": {
+    "teamValue": 1,
+    "confValue": 1
+  },
+  "UMass": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "UNLV": {
+    "teamValue": 8,
+    "confValue": 1
+  },
+  "USC": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "UT Martin": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "UT Martin Skyhawks": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "UT Rio Grande Valley": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Utah": {
+    "teamValue": 6,
+    "confValue": 2
+  },
+  "Utah State": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Utah Tech": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "UTEP": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "UTSA": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Valparaiso": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Vanderbilt": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "Villanova": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Virginia": {
+    "teamValue": 6,
+    "confValue": 2
+  },
+  "Virginia Tech": {
+    "teamValue": 8,
+    "confValue": 2
+  },
+  "VMI": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Wagner": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Wake Forest": {
+    "teamValue": 2,
+    "confValue": 2
+  },
+  "Washington": {
+    "teamValue": 9,
+    "confValue": 3
+  },
+  "Washington State": {
+    "teamValue": 2,
+    "confValue": 1
+  },
+  "Weber State": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "West Georgia": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "West Virginia": {
+    "teamValue": 6,
+    "confValue": 2
+  },
+  "Western Carolina": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Western Illinois": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Western Kentucky": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "Western Michigan": {
+    "teamValue": 0,
+    "confValue": 1
+  },
+  "William & Mary": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Wisconsin": {
+    "teamValue": 7,
+    "confValue": 3
+  },
+  "Wofford": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Wyoming": {
+    "teamValue": 3,
+    "confValue": 1
+  },
+  "Yale": {
+    "teamValue": 0,
+    "confValue": 0
+  },
+  "Youngstown State": {
+    "teamValue": 0,
+    "confValue": 0
+  }
+}
