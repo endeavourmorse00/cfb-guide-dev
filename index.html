@@ -228,6 +228,35 @@
     </div>
 
     <div class="control-group">
+      <label for="teamFilter">Team Search</label>
+      <input type="text" id="teamFilter" placeholder="e.g. LSU, Texas...">
+    </div>
+
+    <div class="control-group">
+      <label for="confFilter">Conference</label>
+      <select id="confFilter">
+        <option value="">All Conferences</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="networkFilter">Network</label>
+      <select id="networkFilter">
+        <option value="">All Networks</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="timeFilter">Time Slot</label>
+      <select id="timeFilter">
+        <option value="">All Times</option>
+        <option value="early">Early (Before 2:30pm)</option>
+        <option value="afternoon">Afternoon (2:30pm–5:59pm)</option>
+        <option value="night">Night (6:00pm & later)</option>
+      </select>
+    </div>
+
+    <div class="control-group">
       <label for="sortBy">Sort By</label>
       <select id="sortBy">
         <option value="time">Game Time</option>
@@ -258,8 +287,8 @@
     function computeWatchScore(matchupStr) {
       const { away, home } = parseMatchup(matchupStr);
 
-      const awayData = teamsLookup[away] || { teamValue: 0, confValue: 0 };
-      const homeData = teamsLookup[home] || { teamValue: 0, confValue: 0 };
+      const awayData = teamsLookup[away] || { teamValue: 0, confValue: 0, conference: 'ZERO' };
+      const homeData = teamsLookup[home] || { teamValue: 0, confValue: 0, conference: 'ZERO' };
 
       const awayTotal = (awayData.teamValue || 0) + (awayData.confValue || 0);
       const homeTotal = (homeData.teamValue || 0) + (homeData.confValue || 0);
@@ -293,7 +322,7 @@
       return nextFutureDate || uniqueDates[uniqueDates.length - 1];
     }
 
-    // 5. Helper to convert time strings into minutes for chronological sorting
+    // 5. Helper to convert time strings into minutes for chronological sorting & time slots
     function parseTimeString(timeStr) {
       if (!timeStr || timeStr.toUpperCase() === 'TBD') return 9999;
       const match = timeStr.trim().match(/^(\d+):(\d+)\s*(am|pm)$/i);
@@ -321,16 +350,54 @@
     function renderGames() {
       const selectedDate = document.getElementById('datePicker').value;
       const minScore = parseInt(document.getElementById('scoreFilter').value, 10);
+      const teamSearch = (document.getElementById('teamFilter').value || '').trim().toLowerCase();
+      const selectedConf = document.getElementById('confFilter').value;
+      const selectedNetwork = document.getElementById('networkFilter').value;
+      const selectedTimeSlot = document.getElementById('timeFilter').value;
       const sortCriteria = document.getElementById('sortBy').value;
+
       const grid = document.getElementById('gamesGrid');
       grid.innerHTML = '';
 
       let filtered = allGames.filter(game => {
+        // Date match
         const matchesDate = !selectedDate || game.date === selectedDate;
+
+        // Score match
         const matchesScore = (game.score || 0) >= minScore;
-        return matchesDate && matchesScore;
+
+        // Team Search match
+        const matchesTeam = !teamSearch || game.matchup.toLowerCase().includes(teamSearch);
+
+        // Conference match (either away or home team belongs to conference)
+        let matchesConf = true;
+        if (selectedConf) {
+          const { away, home } = parseMatchup(game.matchup);
+          const awayConf = teamsLookup[away]?.conference || '';
+          const homeConf = teamsLookup[home]?.conference || '';
+          matchesConf = (awayConf === selectedConf || homeConf === selectedConf);
+        }
+
+        // Network match
+        const matchesNetwork = !selectedNetwork || game.network === selectedNetwork;
+
+        // Time Slot match (Central Time)
+        let matchesTimeSlot = true;
+        if (selectedTimeSlot) {
+          const minutes = parseTimeString(game.time);
+          if (selectedTimeSlot === 'early') {
+            matchesTimeSlot = minutes < (14 * 60 + 30); // Before 2:30 PM
+          } else if (selectedTimeSlot === 'afternoon') {
+            matchesTimeSlot = minutes >= (14 * 60 + 30) && minutes < (18 * 60); // 2:30 PM to 5:59 PM
+          } else if (selectedTimeSlot === 'night') {
+            matchesTimeSlot = minutes >= (18 * 60) && minutes < 9999; // 6:00 PM and later
+          }
+        }
+
+        return matchesDate && matchesScore && matchesTeam && matchesConf && matchesNetwork && matchesTimeSlot;
       });
 
+      // Sorting
       filtered.sort((a, b) => {
         if (sortCriteria === 'score') {
           return (b.score || 0) - (a.score || 0);
@@ -362,7 +429,53 @@
       });
     }
 
-    // 8. Fetch and load games + team lookups
+    // 8. Populate dynamic filter dropdowns (Dates, Conferences, Networks)
+    function populateDropdowns() {
+      // 1. Populate Date Selector
+      const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
+      const dateSelect = document.getElementById('datePicker');
+      dateSelect.innerHTML = '<option value="">All Dates</option>';
+      
+      uniqueDates.forEach(date => {
+        const option = document.createElement('option');
+        option.value = date;
+        option.textContent = formatDateLabel(date);
+        dateSelect.appendChild(option);
+      });
+
+      const defaultDate = getNearestFutureDate(allGames);
+      dateSelect.value = defaultDate;
+
+      // 2. Populate Conference Selector
+      const confSelect = document.getElementById('confFilter');
+      const uniqueConfs = [...new Set(
+        Object.values(teamsLookup)
+          .map(t => t.conference)
+          .filter(c => c && c !== 'ZERO' && c !== 'FCS')
+      )].sort();
+
+      confSelect.innerHTML = '<option value="">All Conferences</option>';
+      uniqueConfs.forEach(conf => {
+        const option = document.createElement('option');
+        option.value = conf;
+        option.textContent = conf;
+        confSelect.appendChild(option);
+      });
+
+      // 3. Populate Network Selector
+      const networkSelect = document.getElementById('networkFilter');
+      const uniqueNetworks = [...new Set(allGames.map(g => g.network).filter(Boolean))].sort();
+
+      networkSelect.innerHTML = '<option value="">All Networks</option>';
+      uniqueNetworks.forEach(net => {
+        const option = document.createElement('option');
+        option.value = net;
+        option.textContent = net;
+        networkSelect.appendChild(option);
+      });
+    }
+
+    // 9. Fetch and load games + team lookups
     async function loadGames() {
       try {
         const [gamesRes, teamsRes] = await Promise.all([
@@ -380,20 +493,7 @@
         }));
         
         if (allGames && allGames.length > 0) {
-          const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
-
-          const dateSelect = document.getElementById('datePicker');
-          dateSelect.innerHTML = '';
-          
-          uniqueDates.forEach(date => {
-            const option = document.createElement('option');
-            option.value = date;
-            option.textContent = formatDateLabel(date);
-            dateSelect.appendChild(option);
-          });
-
-          const defaultDate = getNearestFutureDate(allGames);
-          dateSelect.value = defaultDate;
+          populateDropdowns();
         }
 
         renderGames();
@@ -402,9 +502,13 @@
       }
     }
 
-    // 9. Event Listeners
+    // 10. Event Listeners
     document.getElementById('datePicker').addEventListener('change', renderGames);
     document.getElementById('scoreFilter').addEventListener('change', renderGames);
+    document.getElementById('teamFilter').addEventListener('input', renderGames);
+    document.getElementById('confFilter').addEventListener('change', renderGames);
+    document.getElementById('networkFilter').addEventListener('change', renderGames);
+    document.getElementById('timeFilter').addEventListener('change', renderGames);
     document.getElementById('sortBy').addEventListener('change', renderGames);
 
     // Initialize
