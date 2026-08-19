@@ -105,7 +105,7 @@
     "date": "2026-09-04",
     "matchup": "UTEP at Oklahoma",
     "time": "07:00 pm",
-    "network": "SECN+"
+    "network": "SEC Network+"
   },
   {
     "date": "2026-09-04",
@@ -207,7 +207,7 @@
     "date": "2026-09-05",
     "matchup": "Youngstown State at Kentucky",
     "time": "12:00 pm",
-    "network": "SECN+"
+    "network": "SEC Network+"
   },
   {
     "date": "2026-09-05",
@@ -225,7 +225,7 @@
     "date": "2026-09-05",
     "matchup": "Tennessee State at Georgia",
     "time": "02:00 pm",
-    "network": "SECN+"
+    "network": "SEC Network+"
   },
   {
     "date": "2026-09-05",
@@ -237,7 +237,7 @@
     "date": "2026-09-05",
     "matchup": "Furman at Tennessee",
     "time": "02:30 pm",
-    "network": "SECN+"
+    "network": "SEC Network+"
   },
   {
     "date": "2026-09-05",
@@ -345,7 +345,7 @@
     "date": "2026-09-05",
     "matchup": "Austin Peay at Vanderbilt",
     "time": "06:00 pm",
-    "network": "SECN+"
+    "network": "SEC Network+"
   },
   {
     "date": "2026-09-05",
@@ -657,7 +657,7 @@
     "date": "2026-09-12",
     "matchup": "Western Kentucky at Georgia",
     "time": "11:45 am",
-    "network": "SECN"
+    "network": "SEC Network"
   },
   {
     "date": "2026-09-12",
@@ -813,19 +813,19 @@
     "date": "2026-09-12",
     "matchup": "Delaware at Vanderbilt",
     "time": "03:15 pm",
-    "network": "SECN"
+    "network": "SEC Network"
   },
   {
     "date": "2026-09-12",
     "matchup": "Campbell at Florida",
     "time": "04:30 pm",
-    "network": "SECN"
+    "network": "SEC Network"
   },
   {
     "date": "2026-09-12",
     "matchup": "Memphis at Boise State",
     "time": "05:00 pm",
-    "network": "USA Net"
+    "network": "USA Network"
   },
   {
     "date": "2026-09-12",
@@ -867,7 +867,7 @@
     "date": "2026-09-12",
     "matchup": "Towson at South Carolina",
     "time": "06:00 pm",
-    "network": "SECN"
+    "network": "SEC Network"
   },
   {
     "date": "2026-09-12",
@@ -951,7 +951,7 @@
     "date": "2026-09-12",
     "matchup": "Louisiana Tech at LSU",
     "time": "06:30 pm",
-    "network": "SECN"
+    "network": "SEC Network"
   },
   {
     "date": "2026-09-12",
@@ -969,7 +969,7 @@
     "date": "2026-09-12",
     "matchup": "Southern Miss at Auburn",
     "time": "06:30 pm",
-    "network": "SECN"
+    "network": "SEC Network"
   },
   {
     "date": "2026-09-12",
