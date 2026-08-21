@@ -1510,5 +1510,431 @@
     "matchup": "Fresno State at San Jose State",
     "time": "10:00 pm",
     "network": "FS1"
+  },
+  {
+    "date": "2026-09-24",
+    "matchup": "Liberty at Coastal Carolina",
+    "time": "6:30 pm",
+    "network": "ESPN"
+  },
+  {
+    "date": "2026-09-25",
+    "matchup": "Army at Temple",
+    "time": "3:00 pm",
+    "network": "ESPN"
+  },
+  {
+    "date": "2026-09-25",
+    "matchup": "Howard at Rutgers",
+    "time": "6:00 pm",
+    "network": "Big Ten Network"
+  },
+  {
+    "date": "2026-09-25",
+    "matchup": "Navy at UAB",
+    "time": "6:00 pm",
+    "network": "ESPN"
+  },
+  {
+    "date": "2026-09-25",
+    "matchup": "Northwestern at Indiana",
+    "time": "7:00 pm",
+    "network": "FOX"
+  },
+  {
+    "date": "2026-09-25",
+    "matchup": "Clemson at California",
+    "time": "9:30 pm",
+    "network": "ESPN"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Illinois at Ohio State",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Oregon at USC",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Oklahoma at Georgia",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Notre Dame at Purdue",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Texas A&M at LSU",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Ole Miss at Florida",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Florida State at Virginia",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "NC State at North Carolina",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Kentucky at Tennessee",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Missouri at South Carolina",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "BYU at Cincinnati",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Kansas at UCF",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Texas Tech at Utah",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Michigan at Wisconsin",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Penn State at Minnesota",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Maryland at Michigan State",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Iowa at Washington",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Pittsburgh at Louisville",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Wake Forest at Boston College",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Virginia Tech at SMU",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "North Alabama at Nebraska",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Central Arkansas at Florida State",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Stephen F. Austin at Baylor",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "South Dakota at Iowa State",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Southeast Missouri State at Kansas State",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "East Tennessee State at Syracuse",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Southern Utah at Duke",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Texas State at UTSA",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "App State at Marshall",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Memphis at South Florida",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Louisiana at Charlotte",
+    "time": "TBD",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Texas Southern at Houston",
+    "time": "11:00 am",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "SE Louisiana at Tulane",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Eastern Michigan at Western Michigan",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Miami (OH) at Bowling Green",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Toledo at Akron",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Ball State at Northern Illinois",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Buffalo at Kent State",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Georgia Southern at South Alabama",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Georgia State at Southern Miss",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "UL Monroe at Old Dominion",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Air Force at Wyoming",
+    "time": "11:00 am",
+    "network": "FOX"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "UNLV at Colorado State",
+    "time": "11:00 am",
+    "network": "FS1"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Sacramento State at Nevada",
+    "time": "11:00 am",
+    "network": "MW+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Northern Colorado at New Mexico",
+    "time": "11:00 am",
+    "network": "MW+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "San Jose State at San Diego State",
+    "time": "11:00 am",
+    "network": "CBS"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "New Mexico State at Liberty",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Florida Atlantic at Western Kentucky",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Sam Houston at Louisiana Tech",
+    "time": "11:00 am",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Stonehill at Ohio",
+    "time": "2:30 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "UCLA at Colorado",
+    "time": "2:30 pm",
+    "network": "ESPN"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "North Carolina Central at East Carolina",
+    "time": "3:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Boise State at James Madison",
+    "time": "3:00 pm",
+    "network": "ESPN2"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Long Island University at Florida International",
+    "time": "5:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Central Michigan at Miami",
+    "time": "5:30 pm",
+    "network": "CW"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Kennesaw State at Arkansas State",
+    "time": "6:00 pm",
+    "network": "TBD"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Mercyhurst at Western Kentucky",
+    "time": "6:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Middle Tennessee at Jacksonville State",
+    "time": "6:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Arizona at Washington State",
+    "time": "6:30 pm",
+    "network": "CBS"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Troy at Utah State",
+    "time": "6:30 pm",
+    "network": "CBSSN"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Houston Christian at North Texas",
+    "time": "6:30 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Tulsa at Arkansas",
+    "time": "7:00 pm",
+    "network": "SECN+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Oregon State at UTEP",
+    "time": "8:00 pm",
+    "network": "MW+"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Rice at Fresno State",
+    "time": "9:00 pm",
+    "network": "CW"
+  },
+  {
+    "date": "2026-09-26",
+    "matchup": "Georgia Tech at Stanford",
+    "time": "9:30 pm",
+    "network": "ESPN"
   }
 ]
