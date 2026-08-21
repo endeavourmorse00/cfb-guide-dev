@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>College Football TV Guide</title>
   <style>
     *, *::before, *::after {
@@ -10,38 +12,6 @@
     }
 
     :root {
-      --bg-primary: #ffffff;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --text-label: #475569;
-      --border-color: #cbd5e1;
-      --card-border: #e2e8f0;
-      --control-bg: #ffffff;
-
-      /* Accent Border & Badge Colors (Light Mode) */
-      --accent-elite: #d97706;
-      --badge-elite-bg: #fef3c7;
-      --badge-elite-text: #92400e;
-
-      --accent-high: #2563eb;
-      --badge-high-bg: #dbeafe;
-      --badge-high-text: #1e40af;
-
-      --accent-good: #0891b2;
-      --badge-good-bg: #cffafe;
-      --badge-good-text: #155e75;
-
-      --accent-mid: #64748b;
-      --badge-mid-bg: #f1f5f9;
-      --badge-mid-text: #334155;
-
-      --accent-low: #cbd5e1;
-      --badge-low-bg: #f8fafc;
-      --badge-low-text: #64748b;
-    }
-
-    body.dark-mode {
       --bg-primary: #0b0f19;
       --bg-card: #151e2e;
       --text-main: #f8fafc;
@@ -51,7 +21,7 @@
       --card-border: #1e293b;
       --control-bg: #1e293b;
 
-      /* Accent Border & Badge Colors (Dark Mode) */
+      /* Accent Border & Badge Colors */
       --accent-elite: #fbbf24;
       --badge-elite-bg: rgba(251, 191, 36, 0.15);
       --badge-elite-text: #fde68a;
@@ -73,20 +43,25 @@
       --badge-low-text: #94a3b8;
     }
 
-    html, body {
+    html {
       background-color: var(--bg-primary) !important;
-      color: var(--text-main) !important;
+      color-scheme: dark;
       margin: 0;
-      padding: 16px 12px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      padding: 0;
+      min-height: 100%;
     }
 
     body {
+      background-color: var(--bg-primary) !important;
+      color: var(--text-main) !important;
+      margin: 0;
+      padding: max(16px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
     header {
@@ -96,42 +71,16 @@
       max-width: 1100px;
     }
 
-    .title-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-    }
-
     h1 {
-      margin: 0;
+      margin: 0 0 6px 0;
       color: var(--text-main);
       font-size: 1.75rem;
       font-weight: 800;
       letter-spacing: -0.025em;
     }
 
-    .theme-toggle-btn {
-      background-color: var(--control-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.15s ease, transform 0.1s ease;
-    }
-
-    .theme-toggle-btn:hover {
-      border-color: #2563eb;
-      transform: scale(1.05);
-    }
-
     header p {
-      margin: 6px 0 0 0;
+      margin: 0;
       font-size: 0.75rem;
       color: var(--text-muted);
     }
@@ -171,12 +120,22 @@
       font-size: 0.875rem;
       font-weight: 500;
       outline: none;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
       width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 14px;
+      padding-right: 28px;
     }
 
     input:focus, select:focus {
-      border-color: #2563eb !important;
+      border-color: #60a5fa !important;
     }
 
     .grid {
@@ -198,13 +157,13 @@
       flex-direction: column;
       justify-content: center;
       gap: 6px;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .card:hover {
       transform: translateY(-1px);
-      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
     }
 
     /* Tier Accent Borders */
@@ -307,10 +266,7 @@
 </head>
 <body>
   <header>
-    <div class="title-wrap">
-      <h1>College 🏈 TV Guide</h1>
-      <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
-    </div>
+    <h1>College 🏈 TV Guide</h1>
     <p>Some FCS and G6 games are omitted. Neutral site games appear without site location. All times Central.</p>
   </header>
 
@@ -376,31 +332,7 @@
     let allGames = [];
     let teamsLookup = {};
 
-    // --- Theme Management ---
-    const themeToggleBtn = document.getElementById('themeToggle');
-
-    function applyTheme(isDark) {
-      if (isDark) {
-        document.body.classList.add('dark-mode');
-        themeToggleBtn.textContent = '☀️';
-      } else {
-        document.body.classList.remove('dark-mode');
-        themeToggleBtn.textContent = '🌙';
-      }
-    }
-
-    const savedTheme = localStorage.getItem('cfb-theme');
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialThemeDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
-    applyTheme(initialThemeDark);
-
-    themeToggleBtn.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-mode');
-      localStorage.setItem('cfb-theme', isDark ? 'dark' : 'light');
-      themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
-    });
-
-    // --- Parsing & Calculation ---
+    // 1. Helper to extract Away and Home teams from matchup string
     function parseMatchup(matchupStr) {
       if (!matchupStr) return { away: '', home: '' };
       const parts = matchupStr.split(/\s+(?:at|vs\.?)\s+/i);
@@ -410,6 +342,8 @@
       };
     }
 
+    // 2. Replication of Excel Watch Score formula:
+    // (Away TeamValue + Away ConfValue) + (Home TeamValue + Home ConfValue)
     function computeWatchScore(matchupStr) {
       const { away, home } = parseMatchup(matchupStr);
 
@@ -422,6 +356,7 @@
       return awayTotal + homeTotal;
     }
 
+    // 3. Date formatting helper for dropdown labels
     function formatDateLabel(dateStr) {
       const [year, month, day] = dateStr.split('-').map(Number);
       const dateObj = new Date(year, month - 1, day);
@@ -433,6 +368,7 @@
       });
     }
 
+    // 4. Helper to find nearest future date
     function getNearestFutureDate(games) {
       if (!games || games.length === 0) return '';
       const now = new Date();
@@ -446,6 +382,7 @@
       return nextFutureDate || uniqueDates[uniqueDates.length - 1];
     }
 
+    // 5. Helper to convert time strings into minutes for chronological sorting & time slots
     function parseTimeString(timeStr) {
       if (!timeStr || timeStr.toUpperCase() === 'TBD') return 9999;
       const match = timeStr.trim().match(/^(\d+):(\d+)\s*(am|pm)$/i);
@@ -460,6 +397,7 @@
       return hours * 60 + minutes;
     }
 
+    // 6. Color class badge selector
     function getScoreClass(score) {
       if (score >= 22) return 'score-elite';
       if (score >= 18) return 'score-high';
@@ -468,7 +406,7 @@
       return 'score-low';
     }
 
-    // --- Rendering ---
+    // 7. Render function
     function renderGames() {
       const selectedDate = document.getElementById('datePicker').value;
       const minScore = parseInt(document.getElementById('scoreFilter').value, 10);
@@ -542,8 +480,8 @@
       });
     }
 
+    // 8. Populate dynamic filter dropdowns
     function populateDropdowns() {
-      // 1. Populate Date Selector
       const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
       const dateSelect = document.getElementById('datePicker');
       dateSelect.innerHTML = '<option value="">All Dates</option>';
@@ -558,7 +496,6 @@
       const defaultDate = getNearestFutureDate(allGames);
       dateSelect.value = defaultDate;
 
-      // 2. Populate Conference Selector
       const confSelect = document.getElementById('confFilter');
       const uniqueConfs = [...new Set(
         Object.values(teamsLookup)
@@ -574,7 +511,6 @@
         confSelect.appendChild(option);
       });
 
-      // 3. Populate Network Selector
       const networkSelect = document.getElementById('networkFilter');
       const uniqueNetworks = [...new Set(allGames.map(g => g.network).filter(Boolean))].sort();
 
@@ -587,6 +523,7 @@
       });
     }
 
+    // 9. Load games and lookups
     async function loadGames() {
       try {
         const [gamesRes, teamsRes] = await Promise.all([
@@ -612,7 +549,7 @@
       }
     }
 
-    // Event Listeners
+    // 10. Event Listeners
     document.getElementById('datePicker').addEventListener('change', renderGames);
     document.getElementById('scoreFilter').addEventListener('change', renderGames);
     document.getElementById('teamFilter').addEventListener('input', renderGames);
