@@ -18,26 +18,27 @@
       --border-color: #cbd5e1;
       --card-border: #e2e8f0;
       --control-bg: #ffffff;
-      
-      /* Light Mode Score Tiers */
-      --score-low-bg: #ffffff;
-      --score-low-border: #cbd5e1;
-      --score-low-text: #0f172a;
-      
-      --score-mid-bg: #f0f8ff;
-      --score-mid-border: #bae6fd;
-      --score-mid-text: #0f172a;
-      
-      --score-good-bg: #b0d0e6;
-      --score-good-border: #7dd3fc;
-      --score-good-text: #0f172a;
-      
-      --score-high-card-bg: #4682b4;
-      --score-high-card-text: #ffffff;
-      
-      --score-elite-badge-bg: #003153;
-      --score-elite-badge-text: #ffffff;
-      --score-elite-card-text: #ffffff;
+
+      /* Accent Border & Badge Colors (Light Mode) */
+      --accent-elite: #d97706;
+      --badge-elite-bg: #fef3c7;
+      --badge-elite-text: #92400e;
+
+      --accent-high: #2563eb;
+      --badge-high-bg: #dbeafe;
+      --badge-high-text: #1e40af;
+
+      --accent-good: #0891b2;
+      --badge-good-bg: #cffafe;
+      --badge-good-text: #155e75;
+
+      --accent-mid: #64748b;
+      --badge-mid-bg: #f1f5f9;
+      --badge-mid-text: #334155;
+
+      --accent-low: #cbd5e1;
+      --badge-low-bg: #f8fafc;
+      --badge-low-text: #64748b;
     }
 
     body.dark-mode {
@@ -49,26 +50,27 @@
       --border-color: #334155;
       --card-border: #1e293b;
       --control-bg: #1e293b;
-      
-      /* Dark Mode Score Tiers */
-      --score-low-bg: #1e293b;
-      --score-low-border: #334155;
-      --score-low-text: #f8fafc;
-      
-      --score-mid-bg: #132a42;
-      --score-mid-border: #1e4b75;
-      --score-mid-text: #f8fafc;
-      
-      --score-good-bg: #1e4066;
-      --score-good-border: #3874aa;
-      --score-good-text: #f8fafc;
-      
-      --score-high-card-bg: #2d5b84;
-      --score-high-card-text: #ffffff;
-      
-      --score-elite-badge-bg: #00223d;
-      --score-elite-badge-text: #ffffff;
-      --score-elite-card-text: #ffffff;
+
+      /* Accent Border & Badge Colors (Dark Mode) */
+      --accent-elite: #fbbf24;
+      --badge-elite-bg: rgba(251, 191, 36, 0.15);
+      --badge-elite-text: #fde68a;
+
+      --accent-high: #60a5fa;
+      --badge-high-bg: rgba(96, 165, 250, 0.15);
+      --badge-high-text: #bfdbfe;
+
+      --accent-good: #22d3ee;
+      --badge-good-bg: rgba(34, 211, 238, 0.15);
+      --badge-good-text: #a5f3fc;
+
+      --accent-mid: #94a3b8;
+      --badge-mid-bg: rgba(148, 163, 184, 0.15);
+      --badge-mid-text: #e2e8f0;
+
+      --accent-low: #475569;
+      --badge-low-bg: rgba(71, 85, 105, 0.2);
+      --badge-low-text: #94a3b8;
     }
 
     html, body {
@@ -90,7 +92,6 @@
     header {
       text-align: center;
       margin-bottom: 16px;
-      position: relative;
       width: 100%;
       max-width: 1100px;
     }
@@ -186,10 +187,11 @@
       max-width: 1100px;
     }
 
-    /* Condensed Card Layout */
+    /* Card Layout with Left Accent Border */
     .card {
       background-color: var(--bg-card) !important;
       border: 1px solid var(--card-border) !important;
+      border-left: 5px solid var(--border-color) !important;
       border-radius: 8px;
       padding: 10px 14px;
       display: flex;
@@ -203,6 +205,23 @@
     .card:hover {
       transform: translateY(-1px);
       box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Tier Accent Borders */
+    .card.score-elite {
+      border-left-color: var(--accent-elite) !important;
+    }
+    .card.score-high {
+      border-left-color: var(--accent-high) !important;
+    }
+    .card.score-good {
+      border-left-color: var(--accent-good) !important;
+    }
+    .card.score-mid {
+      border-left-color: var(--accent-mid) !important;
+    }
+    .card.score-low {
+      border-left-color: var(--accent-low) !important;
     }
 
     /* 3-Column Header: Time | Network | Score */
@@ -237,6 +256,34 @@
       font-size: 0.75rem;
       font-weight: 700;
       white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    /* Tier Score Badges */
+    .score-badge.score-elite {
+      background-color: var(--badge-elite-bg) !important;
+      color: var(--badge-elite-text) !important;
+      border-color: var(--accent-elite) !important;
+    }
+    .score-badge.score-high {
+      background-color: var(--badge-high-bg) !important;
+      color: var(--badge-high-text) !important;
+      border-color: var(--accent-high) !important;
+    }
+    .score-badge.score-good {
+      background-color: var(--badge-good-bg) !important;
+      color: var(--badge-good-text) !important;
+      border-color: var(--accent-good) !important;
+    }
+    .score-badge.score-mid {
+      background-color: var(--badge-mid-bg) !important;
+      color: var(--badge-mid-text) !important;
+      border-color: var(--accent-mid) !important;
+    }
+    .score-badge.score-low {
+      background-color: var(--badge-low-bg) !important;
+      color: var(--badge-low-text) !important;
+      border-color: var(--accent-low) !important;
     }
 
     .matchup {
@@ -245,46 +292,6 @@
       color: var(--text-main) !important;
       line-height: 1.25;
       margin: 0;
-    }
-
-    /* Score Tier Color Classes */
-    .score-low {
-      background-color: var(--score-low-bg) !important;
-      color: var(--score-low-text) !important;
-      border: 1px solid var(--score-low-border);
-    }
-
-    .score-mid {
-      background-color: var(--score-mid-bg) !important;
-      color: var(--score-mid-text) !important;
-      border: 1px solid var(--score-mid-border) !important;
-    }
-
-    .score-good {
-      background-color: var(--score-good-bg) !important;
-      color: var(--score-good-text) !important;
-      border: 1px solid var(--score-good-border) !important;
-    }
-
-    .card.score-high {
-      background-color: var(--score-high-card-bg) !important;
-      color: var(--score-high-card-text) !important;
-    }
-    .card.score-high .time,
-    .card.score-high .matchup,
-    .card.score-high .network {
-      color: var(--score-high-card-text) !important;
-    }
-
-    .score-elite {
-      background-color: var(--score-elite-badge-bg) !important;
-      color: var(--score-elite-badge-text) !important;
-      border: 1px solid var(--border-color);
-    }
-    .card.score-elite .time,
-    .card.score-elite .matchup,
-    .card.score-elite .network {
-      color: var(--score-elite-card-text) !important;
     }
 
     .no-games {
