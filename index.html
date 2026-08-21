@@ -9,12 +9,75 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --bg-primary: #ffffff;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-label: #475569;
+      --border-color: #cbd5e1;
+      --card-border: #e2e8f0;
+      --control-bg: #ffffff;
+      
+      /* Light Mode Score Tiers */
+      --score-low-bg: #ffffff;
+      --score-low-border: #cbd5e1;
+      --score-low-text: #0f172a;
+      
+      --score-mid-bg: #f0f8ff;
+      --score-mid-border: #bae6fd;
+      --score-mid-text: #0f172a;
+      
+      --score-good-bg: #b0d0e6;
+      --score-good-border: #7dd3fc;
+      --score-good-text: #0f172a;
+      
+      --score-high-card-bg: #4682b4;
+      --score-high-card-text: #ffffff;
+      
+      --score-elite-badge-bg: #003153;
+      --score-elite-badge-text: #ffffff;
+      --score-elite-card-text: #ffffff;
+    }
+
+    body.dark-mode {
+      --bg-primary: #0b0f19;
+      --bg-card: #151e2e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-label: #cbd5e1;
+      --border-color: #334155;
+      --card-border: #1e293b;
+      --control-bg: #1e293b;
+      
+      /* Dark Mode Score Tiers */
+      --score-low-bg: #1e293b;
+      --score-low-border: #334155;
+      --score-low-text: #f8fafc;
+      
+      --score-mid-bg: #132a42;
+      --score-mid-border: #1e4b75;
+      --score-mid-text: #f8fafc;
+      
+      --score-good-bg: #1e4066;
+      --score-good-border: #3874aa;
+      --score-good-text: #f8fafc;
+      
+      --score-high-card-bg: #2d5b84;
+      --score-high-card-text: #ffffff;
+      
+      --score-elite-badge-bg: #00223d;
+      --score-elite-badge-text: #ffffff;
+      --score-elite-card-text: #ffffff;
+    }
+
     html, body {
-      background-color: #ffffff !important;
-      color: #0f172a !important;
+      background-color: var(--bg-primary) !important;
+      color: var(--text-main) !important;
       margin: 0;
       padding: 16px 12px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     body {
@@ -27,20 +90,49 @@
     header {
       text-align: center;
       margin-bottom: 16px;
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .title-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
     }
 
     h1 {
-      margin: 0 0 6px 0;
-      color: #0f172a;
+      margin: 0;
+      color: var(--text-main);
       font-size: 1.75rem;
       font-weight: 800;
       letter-spacing: -0.025em;
     }
 
+    .theme-toggle-btn {
+      background-color: var(--control-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: #2563eb;
+      transform: scale(1.05);
+    }
+
     header p {
-      margin: 0;
+      margin: 6px 0 0 0;
       font-size: 0.75rem;
-      color: #64748b;
+      color: var(--text-muted);
     }
 
     .controls {
@@ -63,16 +155,16 @@
 
     label {
       font-size: 0.7rem;
-      color: #475569;
+      color: var(--text-label);
       text-transform: uppercase;
       font-weight: 700;
       letter-spacing: 0.05em;
     }
 
     input, select {
-      background-color: #ffffff !important;
-      color: #0f172a !important;
-      border: 1px solid #cbd5e1 !important;
+      background-color: var(--control-bg) !important;
+      color: var(--text-main) !important;
+      border: 1px solid var(--border-color) !important;
       padding: 8px 10px;
       border-radius: 6px;
       font-size: 0.875rem;
@@ -96,8 +188,8 @@
 
     /* Condensed Card Layout */
     .card {
-      background-color: #ffffff !important;
-      border: 1px solid #e2e8f0 !important;
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--card-border) !important;
       border-radius: 8px;
       padding: 10px 14px;
       display: flex;
@@ -123,14 +215,14 @@
 
     .time {
       font-size: 0.8rem;
-      color: #475569;
+      color: var(--text-muted);
       font-weight: 700;
       white-space: nowrap;
     }
 
     .network {
       font-size: 0.775rem;
-      color: #64748b;
+      color: var(--text-muted);
       font-weight: 600;
       text-align: center;
       overflow: hidden;
@@ -150,53 +242,55 @@
     .matchup {
       font-size: 0.975rem;
       font-weight: 700;
-      color: #0f172a !important;
+      color: var(--text-main) !important;
       line-height: 1.25;
       margin: 0;
     }
 
-    /* Score Tier Colors */
+    /* Score Tier Color Classes */
     .score-low {
-      background-color: #ffffff !important;
-      color: #0f172a !important;
-      border: 1px solid #cbd5e1;
+      background-color: var(--score-low-bg) !important;
+      color: var(--score-low-text) !important;
+      border: 1px solid var(--score-low-border);
     }
 
     .score-mid {
-      background-color: #f0f8ff !important;
-      border: 1px solid #bae6fd !important;
+      background-color: var(--score-mid-bg) !important;
+      color: var(--score-mid-text) !important;
+      border: 1px solid var(--score-mid-border) !important;
     }
 
     .score-good {
-      background-color: #b0d0e6 !important;
-      border: 1px solid #7dd3fc !important;
+      background-color: var(--score-good-bg) !important;
+      color: var(--score-good-text) !important;
+      border: 1px solid var(--score-good-border) !important;
     }
 
     .card.score-high {
-      background-color: #4682b4 !important;
-      color: #ffffff !important;
+      background-color: var(--score-high-card-bg) !important;
+      color: var(--score-high-card-text) !important;
     }
     .card.score-high .time,
     .card.score-high .matchup,
     .card.score-high .network {
-      color: #ffffff !important;
+      color: var(--score-high-card-text) !important;
     }
 
     .score-elite {
-      background-color: #003153 !important;
-      color: #ffffff !important;
-      border: 1px solid #1e293b;
+      background-color: var(--score-elite-badge-bg) !important;
+      color: var(--score-elite-badge-text) !important;
+      border: 1px solid var(--border-color);
     }
     .card.score-elite .time,
     .card.score-elite .matchup,
     .card.score-elite .network {
-      color: #ffffff !important;
+      color: var(--score-elite-card-text) !important;
     }
 
     .no-games {
       grid-column: 1 / -1;
       text-align: center;
-      color: #64748b;
+      color: var(--text-muted);
       margin-top: 32px;
       font-size: 1rem;
     }
@@ -206,7 +300,10 @@
 </head>
 <body>
   <header>
-    <h1>College 🏈 TV Guide</h1>
+    <div class="title-wrap">
+      <h1>College 🏈 TV Guide</h1>
+      <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
+    </div>
     <p>Some FCS and G6 games are omitted. Neutral site games appear without site location. All times Central.</p>
   </header>
 
@@ -272,7 +369,31 @@
     let allGames = [];
     let teamsLookup = {};
 
-    // 1. Helper to extract Away and Home teams from matchup string
+    // --- Theme Management ---
+    const themeToggleBtn = document.getElementById('themeToggle');
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        document.body.classList.add('dark-mode');
+        themeToggleBtn.textContent = '☀️';
+      } else {
+        document.body.classList.remove('dark-mode');
+        themeToggleBtn.textContent = '🌙';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('cfb-theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialThemeDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
+    applyTheme(initialThemeDark);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('cfb-theme', isDark ? 'dark' : 'light');
+      themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    // --- Parsing & Calculation ---
     function parseMatchup(matchupStr) {
       if (!matchupStr) return { away: '', home: '' };
       const parts = matchupStr.split(/\s+(?:at|vs\.?)\s+/i);
@@ -282,8 +403,6 @@
       };
     }
 
-    // 2. Replication of Excel Watch Score formula:
-    // (Away TeamValue + Away ConfValue) + (Home TeamValue + Home ConfValue)
     function computeWatchScore(matchupStr) {
       const { away, home } = parseMatchup(matchupStr);
 
@@ -296,7 +415,6 @@
       return awayTotal + homeTotal;
     }
 
-    // 3. Date formatting helper for dropdown labels
     function formatDateLabel(dateStr) {
       const [year, month, day] = dateStr.split('-').map(Number);
       const dateObj = new Date(year, month - 1, day);
@@ -308,7 +426,6 @@
       });
     }
 
-    // 4. Helper to find nearest future date
     function getNearestFutureDate(games) {
       if (!games || games.length === 0) return '';
       const now = new Date();
@@ -322,7 +439,6 @@
       return nextFutureDate || uniqueDates[uniqueDates.length - 1];
     }
 
-    // 5. Helper to convert time strings into minutes for chronological sorting & time slots
     function parseTimeString(timeStr) {
       if (!timeStr || timeStr.toUpperCase() === 'TBD') return 9999;
       const match = timeStr.trim().match(/^(\d+):(\d+)\s*(am|pm)$/i);
@@ -337,7 +453,6 @@
       return hours * 60 + minutes;
     }
 
-    // 6. Color class badge selector
     function getScoreClass(score) {
       if (score >= 22) return 'score-elite';
       if (score >= 18) return 'score-high';
@@ -346,7 +461,7 @@
       return 'score-low';
     }
 
-    // 7. Render function
+    // --- Rendering ---
     function renderGames() {
       const selectedDate = document.getElementById('datePicker').value;
       const minScore = parseInt(document.getElementById('scoreFilter').value, 10);
@@ -360,16 +475,10 @@
       grid.innerHTML = '';
 
       let filtered = allGames.filter(game => {
-        // Date match
         const matchesDate = !selectedDate || game.date === selectedDate;
-
-        // Score match
         const matchesScore = (game.score || 0) >= minScore;
-
-        // Team Search match
         const matchesTeam = !teamSearch || game.matchup.toLowerCase().includes(teamSearch);
 
-        // Conference match (either away or home team belongs to conference)
         let matchesConf = true;
         if (selectedConf) {
           const { away, home } = parseMatchup(game.matchup);
@@ -378,26 +487,23 @@
           matchesConf = (awayConf === selectedConf || homeConf === selectedConf);
         }
 
-        // Network match
         const matchesNetwork = !selectedNetwork || game.network === selectedNetwork;
 
-        // Time Slot match (Central Time)
         let matchesTimeSlot = true;
         if (selectedTimeSlot) {
           const minutes = parseTimeString(game.time);
           if (selectedTimeSlot === 'early') {
-            matchesTimeSlot = minutes < (14 * 60 + 30); // Before 2:30 PM
+            matchesTimeSlot = minutes < (14 * 60 + 30);
           } else if (selectedTimeSlot === 'afternoon') {
-            matchesTimeSlot = minutes >= (14 * 60 + 30) && minutes < (18 * 60); // 2:30 PM to 5:59 PM
+            matchesTimeSlot = minutes >= (14 * 60 + 30) && minutes < (18 * 60);
           } else if (selectedTimeSlot === 'night') {
-            matchesTimeSlot = minutes >= (18 * 60) && minutes < 9999; // 6:00 PM and later
+            matchesTimeSlot = minutes >= (18 * 60) && minutes < 9999;
           }
         }
 
         return matchesDate && matchesScore && matchesTeam && matchesConf && matchesNetwork && matchesTimeSlot;
       });
 
-      // Sorting
       filtered.sort((a, b) => {
         if (sortCriteria === 'score') {
           return (b.score || 0) - (a.score || 0);
@@ -429,7 +535,6 @@
       });
     }
 
-    // 8. Populate dynamic filter dropdowns (Dates, Conferences, Networks)
     function populateDropdowns() {
       // 1. Populate Date Selector
       const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
@@ -475,7 +580,6 @@
       });
     }
 
-    // 9. Fetch and load games + team lookups
     async function loadGames() {
       try {
         const [gamesRes, teamsRes] = await Promise.all([
@@ -486,7 +590,6 @@
         const rawGames = await gamesRes.json();
         teamsLookup = await teamsRes.json();
 
-        // Calculate watch score dynamically
         allGames = rawGames.map(game => ({
           ...game,
           score: computeWatchScore(game.matchup)
@@ -502,7 +605,7 @@
       }
     }
 
-    // 10. Event Listeners
+    // Event Listeners
     document.getElementById('datePicker').addEventListener('change', renderGames);
     document.getElementById('scoreFilter').addEventListener('change', renderGames);
     document.getElementById('teamFilter').addEventListener('input', renderGames);
@@ -511,7 +614,6 @@
     document.getElementById('timeFilter').addEventListener('change', renderGames);
     document.getElementById('sortBy').addEventListener('change', renderGames);
 
-    // Initialize
     loadGames();
   </script>
 </body>
