@@ -295,7 +295,8 @@
 
     <div class="control-group">
       <label for="teamFilter">Team Search</label>
-      <input type="text" id="teamFilter" placeholder="e.g. LSU, Texas...">
+      <input type="text" id="teamFilter" placeholder="e.g. LSU, Texas..." list="teamList" autocomplete="off">
+      <datalist id="teamList"></datalist>
     </div>
 
     <div class="control-group">
@@ -486,8 +487,20 @@
       });
     }
 
-    // 8. Populate dynamic filter dropdowns
+   // 8. Populate dynamic filter dropdowns
     function populateDropdowns() {
+      // 0. Populate Team Search Autocomplete Dropdown
+      const teamDatalist = document.getElementById('teamList');
+      const sortedTeams = Object.keys(teamsLookup).sort((a, b) => a.localeCompare(b));
+      teamDatalist.innerHTML = '';
+
+      sortedTeams.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team;
+        teamDatalist.appendChild(option);
+      });
+
+      // 1. Populate Date Selector
       const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
       const dateSelect = document.getElementById('datePicker');
       dateSelect.innerHTML = '<option value="">All Dates</option>';
@@ -499,9 +512,7 @@
         dateSelect.appendChild(option);
       });
 
-      const defaultDate = getNearestFutureDate(allGames);
-      dateSelect.value = defaultDate;
-
+      // 2. Populate Conference Selector
       const confSelect = document.getElementById('confFilter');
       const uniqueConfs = [...new Set(
         Object.values(teamsLookup)
@@ -517,6 +528,7 @@
         confSelect.appendChild(option);
       });
 
+      // 3. Populate Network Selector
       const networkSelect = document.getElementById('networkFilter');
       const uniqueNetworks = [...new Set(allGames.map(g => g.network).filter(Boolean))].sort();
 
