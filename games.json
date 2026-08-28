@@ -1,6 +1,24 @@
 [
   {
     "date": "2026-08-28",
+    "matchup": "Rhode Island at Merrimack",
+    "time": "6:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-08-28",
+    "matchup": "Colgate at Fordham",
+    "time": "6:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-08-28",
+    "matchup": "William & Mary at Villanova",
+    "time": "6:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-08-28",
     "matchup": "Idaho at Cal Poly",
     "time": "10:00 pm",
     "network": "ESPN"
