@@ -379,6 +379,56 @@
     let teamsLookup = {};
     let liveScoresMap = {};
 
+    const ALIAS_GROUPS = {
+  "Ole Miss": ["Mississippi", "Rebels", "Ole Miss Rebels", "Univ of Mississippi"],
+  "Pittsburgh": ["Pitt"],
+  "Connecticut": ["UConn"],
+  "NC State": {"North Carolina State"],
+  "UMass": ["Massachusetts"],
+  "USF": ["South Florida"],
+  "FAU": ["Florida Atlantic"],
+  "FIU": ["Florida International"],
+  "UTEP": ["Texas-El Paso"],
+  "UTSA": ["Texas-San Antonio"],
+  "UL Monroe": ["Louisiana-Monroe"],
+  "ULM": ["Louisiana-Monroe"],
+  "Louisiana": ["Louisiana-Lafayette"],
+  "ULL": ["Louisiana-Lafayette"],
+  "Middle Tennessee": ["Middle Tennessee State"],
+  "MTSU": ["Middle Tennessee State"],
+  "WKU": ["Western Kentucky"],
+  "ETSU": ["East Tennessee State"],
+  "NMSU": ["New Mexico State"],
+  "SMU": ["Southern Methodist"],
+  "TCU": ["Texas Christian"],
+  "BYU": ["Brigham Young"],
+  "UCF": ["Central Florida"],
+  "UNLV": ["Nevada-Las Vegas"],
+
+  // Directional & State Variants
+  "Southern Cal": ["USC"],
+  "App State": ["Appalachian State"],
+  "Sam Houston": ["Sam Houston State"],
+  "San Jose State": ["San José State"],
+  "Hawai'i": ["Hawaii"],
+  "Miami (FL)": ["Miami"],
+  "Miami (OH)": ["Miami (Ohio)"],
+  "UL Monroe Warhawks": ["Louisiana-Monroe"],
+  "Southeastern Louisiana": ["SE Louisiana", "Southeast LA", Southeastern La.],
+  
+  // Punctuation & St. vs Saint
+  "St. Bonaventure": ["Saint Bonaventure"],
+  "Saint Mary's": ["St. Mary's""]   
+};
+
+// Auto-build the flat lookup object so lookups remain instant: O(1)
+const TEAM_ALIASES = {};
+for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
+  aliases.forEach(alias => {
+    TEAM_ALIASES[alias] = canonical;
+  });
+}
+
     function cleanTeamName(name) {
       if (!name) return '';
       return name.toLowerCase()
