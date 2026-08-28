@@ -27,12 +27,12 @@
       --badge-elite-text: #fde68a;
 
       --accent-high: #22d3ee;
-      --badge-high-bg: rgba(96, 165, 250, 0.15);
-      --badge-high-text: #bfdbfe;
+      --badge-high-bg: rgba(34, 211, 238, 0.15);
+      --badge-high-text: #a5f3fc;
 
       --accent-good: #60a5fa;
-      --badge-good-bg: rgba(34, 211, 238, 0.15);
-      --badge-good-text: #a5f3fc;
+      --badge-good-bg: rgba(96, 165, 250, 0.15);
+      --badge-good-text: #bfdbfe;
 
       --accent-mid: #94a3b8;
       --badge-mid-bg: rgba(148, 163, 184, 0.15);
@@ -146,7 +146,7 @@
       max-width: 1100px;
     }
 
-    /* Card Layout with Left Accent Border */
+    /* Card Layout */
     .card {
       background-color: var(--bg-card) !important;
       border: 1px solid var(--card-border) !important;
@@ -166,7 +166,7 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
     }
 
-    /* Tier Accent Borders */
+    /* Graduated Tier Borders */
     .card.score-elite {
       border-left-width: 15px !important;
       border-left-color: var(--accent-elite) !important;
@@ -189,7 +189,7 @@
       border-left-color: var(--accent-low) !important;
     }
 
-    /* 3-Column Header: Time | Network | Score */
+    /* 3-Column Header: Time/Status | Network | Score */
     .card-header {
       display: flex;
       justify-content: space-between;
@@ -197,11 +197,25 @@
       gap: 8px;
     }
 
-    .time {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .status-badge {
+      font-size: 0.775rem;
       font-weight: 700;
+      color: var(--text-muted);
       white-space: nowrap;
+    }
+
+    .status-live {
+      color: #ef4444 !important;
+      animation: pulse 1.8s infinite;
+    }
+
+    .status-final {
+      color: #94a3b8 !important;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
 
     .network {
@@ -251,12 +265,37 @@
       border-color: var(--accent-low) !important;
     }
 
-    .matchup {
-      font-size: 0.975rem;
-      font-weight: 700;
-      color: var(--text-main) !important;
+    /* Stacked Team & Score Container */
+    .teams-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-top: 2px;
+    }
+
+    .team-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       line-height: 1.25;
-      margin: 0;
+    }
+
+    .team-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    .team-score {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      min-width: 24px;
+      text-align: right;
     }
 
     .no-games {
@@ -338,8 +377,24 @@
   <script>
     let allGames = [];
     let teamsLookup = {};
+    let liveScoresMap = {};
 
-    // 1. Helper to extract Away and Home teams from matchup string
+    function cleanTeamName(name) {
+      if (!name) return '';
+      return name.toLowerCase()
+        .replace(/[\.\']/g, '')
+        .replace(/\bst\b/g, 'state')
+        .replace(/\bso\b/g, 'southern')
+        .replace(/\bga\b/g, 'georgia')
+        .replace(/\bfla\b/g, 'florida')
+        .replace(/\bill\b/g, 'illinois')
+        .replace(/\bky\b/g, 'kentucky')
+        .replace(/\bva\b/g, 'virginia')
+        .replace(/\bcaro\b/g, 'carolina')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
     function parseMatchup(matchupStr) {
       if (!matchupStr) return { away: '', home: '' };
       const parts = matchupStr.split(/\s+(?:at|vs\.?)\s+/i);
@@ -349,21 +404,13 @@
       };
     }
 
-    // 2. Replication of Excel Watch Score formula:
-    // (Away TeamValue + Away ConfValue) + (Home TeamValue + Home ConfValue)
     function computeWatchScore(matchupStr) {
       const { away, home } = parseMatchup(matchupStr);
-
       const awayData = teamsLookup[away] || { teamValue: 0, confValue: 0, conference: 'ZERO' };
       const homeData = teamsLookup[home] || { teamValue: 0, confValue: 0, conference: 'ZERO' };
-
-      const awayTotal = (awayData.teamValue || 0) + (awayData.confValue || 0);
-      const homeTotal = (homeData.teamValue || 0) + (homeData.confValue || 0);
-
-      return awayTotal + homeTotal;
+      return (awayData.teamValue || 0) + (awayData.confValue || 0) + (homeData.teamValue || 0) + (homeData.confValue || 0);
     }
 
-    // 3. Date formatting helper for dropdown labels
     function formatDateLabel(dateStr) {
       const [year, month, day] = dateStr.split('-').map(Number);
       const dateObj = new Date(year, month - 1, day);
@@ -375,7 +422,6 @@
       });
     }
 
-    // 4. Helper to find nearest future date
     function getNearestFutureDate(games) {
       if (!games || games.length === 0) return '';
       const now = new Date();
@@ -383,13 +429,11 @@
       const month = String(now.getMonth() + 1).padStart(2, '0');
       const day = String(now.getDate()).padStart(2, '0');
       const todayStr = `${year}-${month}-${day}`;
-
       const uniqueDates = [...new Set(games.map(g => g.date))].sort();
       const nextFutureDate = uniqueDates.find(d => d >= todayStr);
       return nextFutureDate || uniqueDates[uniqueDates.length - 1];
     }
 
-    // 5. Helper to convert time strings into minutes for chronological sorting & time slots
     function parseTimeString(timeStr) {
       if (!timeStr || timeStr.toUpperCase() === 'TBD') return 9999;
       const match = timeStr.trim().match(/^(\d+):(\d+)\s*(am|pm)$/i);
@@ -397,14 +441,11 @@
       let hours = parseInt(match[1], 10);
       const minutes = parseInt(match[2], 10);
       const period = match[3].toLowerCase();
-
       if (period === 'pm' && hours < 12) hours += 12;
       if (period === 'am' && hours === 12) hours = 0;
-
       return hours * 60 + minutes;
     }
 
-    // 6. Color class badge selector
     function getScoreClass(score) {
       if (score >= 22) return 'score-elite';
       if (score >= 18) return 'score-high';
@@ -413,7 +454,27 @@
       return 'score-low';
     }
 
-    // 7. Render function
+    function matchLiveGame(away, home) {
+      const cAway = cleanTeamName(away);
+      const cHome = cleanTeamName(home);
+      const key1 = `${cAway}_${cHome}`;
+      if (liveScoresMap[key1]) return liveScoresMap[key1];
+
+      // Fuzzy check across active entries
+      for (const key in liveScoresMap) {
+        const item = liveScoresMap[key];
+        const sbAway = cleanTeamName(item.awayName);
+        const sbHome = cleanTeamName(item.homeName);
+        if (
+          (cAway.includes(sbAway) || sbAway.includes(cAway)) &&
+          (cHome.includes(sbHome) || sbHome.includes(cHome))
+        ) {
+          return item;
+        }
+      }
+      return null;
+    }
+
     function renderGames() {
       const selectedDate = document.getElementById('datePicker').value;
       const minScore = parseInt(document.getElementById('scoreFilter').value, 10);
@@ -472,54 +533,76 @@
       }
 
       filtered.forEach(game => {
+        const { away, home } = parseMatchup(game.matchup);
+        const live = matchLiveGame(away, home);
+
+        // Determine Game Status Display
+        let statusHtml = `<span class="status-badge">${game.time}</span>`;
+        let awayScore = '';
+        let homeScore = '';
+
+        if (live) {
+          if (live.gameState === 'live') {
+            const clock = (live.clock && live.clock !== ':') ? ` ${live.clock}` : '';
+            statusHtml = `<span class="status-badge status-live">🔴 ${live.period}${clock}</span>`;
+            awayScore = live.awayScore ?? '';
+            homeScore = live.homeScore ?? '';
+          } else if (live.gameState === 'final') {
+            statusHtml = `<span class="status-badge status-final">FINAL</span>`;
+            awayScore = live.awayScore ?? '';
+            homeScore = live.homeScore ?? '';
+          }
+        }
+
         const scoreClass = getScoreClass(game.score || 0);
         const card = document.createElement('div');
         card.className = `card ${scoreClass}`;
         card.innerHTML = `
           <div class="card-header">
-            <span class="time">${game.time}</span>
+            ${statusHtml}
             <span class="network">📺 ${game.network}</span>
             <span class="score-badge ${scoreClass}">Score: ${game.score}</span>
           </div>
-          <div class="matchup">${game.matchup}</div>
+          <div class="teams-container">
+            <div class="team-row">
+              <span class="team-name">${away || 'Away'}</span>
+              <span class="team-score">${awayScore}</span>
+            </div>
+            <div class="team-row">
+              <span class="team-name">${home || 'Home'}</span>
+              <span class="team-score">${homeScore}</span>
+            </div>
+          </div>
         `;
         grid.appendChild(card);
       });
     }
 
-   // 8. Populate dynamic filter dropdowns
     function populateDropdowns() {
-      // 0. Populate Team Search Autocomplete Dropdown
       const teamDatalist = document.getElementById('teamList');
       const sortedTeams = Object.keys(teamsLookup).sort((a, b) => a.localeCompare(b));
       teamDatalist.innerHTML = '';
-
       sortedTeams.forEach(team => {
         const option = document.createElement('option');
         option.value = team;
         teamDatalist.appendChild(option);
       });
 
-      // 1. Populate Date Selector
       const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
       const dateSelect = document.getElementById('datePicker');
       dateSelect.innerHTML = '<option value="">All Dates</option>';
-      
       uniqueDates.forEach(date => {
         const option = document.createElement('option');
         option.value = date;
         option.textContent = formatDateLabel(date);
         dateSelect.appendChild(option);
       });
+      dateSelect.value = getNearestFutureDate(allGames);
 
-      // 2. Populate Conference Selector
       const confSelect = document.getElementById('confFilter');
       const uniqueConfs = [...new Set(
-        Object.values(teamsLookup)
-          .map(t => t.conference)
-          .filter(c => c && c !== 'ZERO' && c !== 'FCS')
+        Object.values(teamsLookup).map(t => t.conference).filter(c => c && c !== 'ZERO' && c !== 'FCS')
       )].sort();
-
       confSelect.innerHTML = '<option value="">All Conferences</option>';
       uniqueConfs.forEach(conf => {
         const option = document.createElement('option');
@@ -528,10 +611,8 @@
         confSelect.appendChild(option);
       });
 
-      // 3. Populate Network Selector
       const networkSelect = document.getElementById('networkFilter');
       const uniqueNetworks = [...new Set(allGames.map(g => g.network).filter(Boolean))].sort();
-
       networkSelect.innerHTML = '<option value="">All Networks</option>';
       uniqueNetworks.forEach(net => {
         const option = document.createElement('option');
@@ -541,33 +622,55 @@
       });
     }
 
-    // 9. Load games and lookups
     async function loadGames() {
       try {
-        const [gamesRes, teamsRes] = await Promise.all([
+        const [gamesRes, teamsRes, scoreRes] = await Promise.all([
           fetch('games.json'),
-          fetch('teams.json')
+          fetch('teams.json'),
+          fetch('scoreboard.json').catch(() => null)
         ]);
 
         const rawGames = await gamesRes.json();
         teamsLookup = await teamsRes.json();
 
+        if (scoreRes && scoreRes.ok) {
+          const scoreData = await scoreRes.json();
+          if (scoreData && Array.isArray(scoreData.games)) {
+            scoreData.games.forEach(g => {
+              const gm = g.game;
+              if (!gm) return;
+              const awayShort = gm.away?.names?.short || '';
+              const homeShort = gm.home?.names?.short || '';
+              const key = `${cleanTeamName(awayShort)}_${cleanTeamName(homeShort)}`;
+
+              liveScoresMap[key] = {
+                awayName: awayShort,
+                homeName: homeShort,
+                awayScore: gm.away?.score || '',
+                homeScore: gm.home?.score || '',
+                gameState: gm.gameState,
+                period: gm.currentPeriod || gm.finalMessage || '',
+                clock: gm.contestClock || ''
+              };
+            });
+          }
+        }
+
         allGames = rawGames.map(game => ({
           ...game,
           score: computeWatchScore(game.matchup)
         }));
-        
+
         if (allGames && allGames.length > 0) {
           populateDropdowns();
         }
 
         renderGames();
       } catch (err) {
-        console.error('Error loading games or teams lookup:', err);
+        console.error('Error loading games data:', err);
       }
     }
 
-    // 10. Event Listeners
     document.getElementById('datePicker').addEventListener('change', renderGames);
     document.getElementById('scoreFilter').addEventListener('change', renderGames);
     document.getElementById('teamFilter').addEventListener('input', renderGames);
