@@ -1193,15 +1193,15 @@
                   "short" : "Marist"
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "14",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "05:35",
-            "currentPeriod" : "1ST",
-            "finalMessage" : "1ST",
+            "contestClock" : "03:53",
+            "currentPeriod" : "2ND",
+            "finalMessage" : "2ND",
             "gameID" : "6604384",
             "gameState" : "live",
             "home" : {
@@ -1219,7 +1219,7 @@
                   "short" : "New Haven"
                },
                "rank" : "",
-               "score" : "3",
+               "score" : "10",
                "seed" : "",
                "winner" : false
             },
@@ -1230,6 +1230,62 @@
             "startTimeEpoch" : "1787954400",
             "title" : "Marist New Haven",
             "url" : "/game/6604384"
+         }
+      },
+      {
+         "game" : {
+            "away" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "caa"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "URI",
+                  "full" : "",
+                  "seo" : "rhode-island",
+                  "short" : "Rhode Island"
+               },
+               "rank" : "",
+               "score" : "14",
+               "seed" : "",
+               "winner" : false
+            },
+            "bracketId" : "",
+            "bracketRound" : "",
+            "contestClock" : "07:54",
+            "currentPeriod" : "2ND",
+            "finalMessage" : "2ND",
+            "gameID" : "6604396",
+            "gameState" : "live",
+            "home" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "fcs-independent"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "MERMCK",
+                  "full" : "",
+                  "seo" : "merrimack",
+                  "short" : "Merrimack"
+               },
+               "rank" : "",
+               "score" : "7",
+               "seed" : "",
+               "winner" : false
+            },
+            "liveVideoEnabled" : false,
+            "network" : "",
+            "startDate" : "08/28/2026",
+            "startTime" : "6:00 PM ET",
+            "startTimeEpoch" : "1787954400",
+            "title" : "Rhode Island Merrimack",
+            "url" : "/game/6604396"
          }
       },
       {
@@ -1249,15 +1305,15 @@
                   "short" : "Colgate"
                },
                "rank" : "",
-               "score" : "7",
+               "score" : "14",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "00:09",
-            "currentPeriod" : "1ST",
-            "finalMessage" : "1ST",
+            "contestClock" : "01:06",
+            "currentPeriod" : "2ND",
+            "finalMessage" : "2ND",
             "gameID" : "6604549",
             "gameState" : "live",
             "home" : {
@@ -1305,15 +1361,15 @@
                   "short" : "William & Mary"
                },
                "rank" : "",
-               "score" : "7",
+               "score" : "10",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "03:02",
-            "currentPeriod" : "1ST",
-            "finalMessage" : "1ST",
+            "contestClock" : "03:58",
+            "currentPeriod" : "2ND",
+            "finalMessage" : "2ND",
             "gameID" : "6604692",
             "gameState" : "live",
             "home" : {
@@ -1355,79 +1411,23 @@
                ],
                "description" : "",
                "names" : {
-                  "char6" : "URI",
-                  "full" : "",
-                  "seo" : "rhode-island",
-                  "short" : "Rhode Island"
-               },
-               "rank" : "",
-               "score" : "",
-               "seed" : "",
-               "winner" : false
-            },
-            "bracketId" : "",
-            "bracketRound" : "",
-            "contestClock" : "0:00",
-            "currentPeriod" : "",
-            "finalMessage" : "",
-            "gameID" : "6604396",
-            "gameState" : "pre",
-            "home" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "fcs-independent"
-                  }
-               ],
-               "description" : "",
-               "names" : {
-                  "char6" : "MERMCK",
-                  "full" : "",
-                  "seo" : "merrimack",
-                  "short" : "Merrimack"
-               },
-               "rank" : "",
-               "score" : "",
-               "seed" : "",
-               "winner" : false
-            },
-            "liveVideoEnabled" : false,
-            "network" : "",
-            "startDate" : "08/28/2026",
-            "startTime" : "6:00 PM ET",
-            "startTimeEpoch" : "1787954400",
-            "title" : "Rhode Island Merrimack",
-            "url" : "/game/6604396"
-         }
-      },
-      {
-         "game" : {
-            "away" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "caa"
-                  }
-               ],
-               "description" : "",
-               "names" : {
                   "char6" : "UNH",
                   "full" : "",
                   "seo" : "new-hampshire",
                   "short" : "New Hampshire"
                },
                "rank" : "",
-               "score" : "",
+               "score" : "0",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "0:00",
-            "currentPeriod" : "",
-            "finalMessage" : "",
+            "contestClock" : "14:55",
+            "currentPeriod" : "1ST",
+            "finalMessage" : "1ST",
             "gameID" : "6604904",
-            "gameState" : "pre",
+            "gameState" : "live",
             "home" : {
                "conferences" : [
                   {
@@ -1443,7 +1443,7 @@
                   "short" : "UAlbany"
                },
                "rank" : "",
-               "score" : "",
+               "score" : "0",
                "seed" : "",
                "winner" : false
             },
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "db1c896efa9a4e86b90ed4e2e400408f",
+   "inputMD5Sum" : "a06093e0c35aff7e641bc535b4667401",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-28 22:33:28"
+   "updated_at" : "2026-08-28 23:09:31"
 }
