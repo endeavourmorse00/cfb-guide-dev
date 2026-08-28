@@ -1199,7 +1199,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "03:53",
+            "contestClock" : "01:02",
             "currentPeriod" : "2ND",
             "finalMessage" : "2ND",
             "gameID" : "6604384",
@@ -1255,7 +1255,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "07:54",
+            "contestClock" : "03:04",
             "currentPeriod" : "2ND",
             "finalMessage" : "2ND",
             "gameID" : "6604396",
@@ -1311,7 +1311,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "01:06",
+            "contestClock" : "13:08",
             "currentPeriod" : "2ND",
             "finalMessage" : "2ND",
             "gameID" : "6604549",
@@ -1367,9 +1367,9 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "03:58",
-            "currentPeriod" : "2ND",
-            "finalMessage" : "2ND",
+            "contestClock" : "0:00",
+            "currentPeriod" : "HALF",
+            "finalMessage" : "HALF",
             "gameID" : "6604692",
             "gameState" : "live",
             "home" : {
@@ -1387,7 +1387,7 @@
                   "short" : "Villanova"
                },
                "rank" : "",
-               "score" : "7",
+               "score" : "17",
                "seed" : "",
                "winner" : false
             },
@@ -1417,13 +1417,13 @@
                   "short" : "New Hampshire"
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "7",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "14:55",
+            "contestClock" : "04:13",
             "currentPeriod" : "1ST",
             "finalMessage" : "1ST",
             "gameID" : "6604904",
@@ -1443,7 +1443,7 @@
                   "short" : "UAlbany"
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "6",
                "seed" : "",
                "winner" : false
             },
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "a06093e0c35aff7e641bc535b4667401",
+   "inputMD5Sum" : "55452a76292a06cd7e5d6fe02e04a372",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-28 23:09:31"
+   "updated_at" : "2026-08-28 23:28:23"
 }
