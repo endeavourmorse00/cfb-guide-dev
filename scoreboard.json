@@ -1199,7 +1199,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "07:30",
+            "contestClock" : "05:35",
             "currentPeriod" : "1ST",
             "finalMessage" : "1ST",
             "gameID" : "6604384",
@@ -1249,13 +1249,13 @@
                   "short" : "Colgate"
                },
                "rank" : "",
-               "score" : "6",
+               "score" : "7",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "04:43",
+            "contestClock" : "00:09",
             "currentPeriod" : "1ST",
             "finalMessage" : "1ST",
             "gameID" : "6604549",
@@ -1311,7 +1311,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "05:55",
+            "contestClock" : "03:02",
             "currentPeriod" : "1ST",
             "finalMessage" : "1ST",
             "gameID" : "6604692",
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "d0b1492c4e48a1fb18380ac056b8a103",
+   "inputMD5Sum" : "db1c896efa9a4e86b90ed4e2e400408f",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-28 22:24:32"
+   "updated_at" : "2026-08-28 22:33:28"
 }
