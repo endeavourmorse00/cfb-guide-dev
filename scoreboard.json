@@ -1199,7 +1199,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "08:57",
+            "contestClock" : "07:30",
             "currentPeriod" : "1ST",
             "finalMessage" : "1ST",
             "gameID" : "6604384",
@@ -1249,13 +1249,13 @@
                   "short" : "Colgate"
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "6",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "07:39",
+            "contestClock" : "04:43",
             "currentPeriod" : "1ST",
             "finalMessage" : "1ST",
             "gameID" : "6604549",
@@ -1286,6 +1286,62 @@
             "startTimeEpoch" : "1787954400",
             "title" : "Colgate Fordham",
             "url" : "/game/6604549"
+         }
+      },
+      {
+         "game" : {
+            "away" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "patriot"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "WM&MRY",
+                  "full" : "",
+                  "seo" : "william-mary",
+                  "short" : "William & Mary"
+               },
+               "rank" : "",
+               "score" : "7",
+               "seed" : "",
+               "winner" : false
+            },
+            "bracketId" : "",
+            "bracketRound" : "",
+            "contestClock" : "05:55",
+            "currentPeriod" : "1ST",
+            "finalMessage" : "1ST",
+            "gameID" : "6604692",
+            "gameState" : "live",
+            "home" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "patriot"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "NOVA",
+                  "full" : "",
+                  "seo" : "villanova",
+                  "short" : "Villanova"
+               },
+               "rank" : "",
+               "score" : "7",
+               "seed" : "",
+               "winner" : false
+            },
+            "liveVideoEnabled" : false,
+            "network" : "",
+            "startDate" : "08/28/2026",
+            "startTime" : "6:00 PM ET",
+            "startTimeEpoch" : "1787954400",
+            "title" : "William & Mary Villanova",
+            "url" : "/game/6604692"
          }
       },
       {
@@ -1342,62 +1398,6 @@
             "startTimeEpoch" : "1787954400",
             "title" : "Rhode Island Merrimack",
             "url" : "/game/6604396"
-         }
-      },
-      {
-         "game" : {
-            "away" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "patriot"
-                  }
-               ],
-               "description" : "",
-               "names" : {
-                  "char6" : "WM&MRY",
-                  "full" : "",
-                  "seo" : "william-mary",
-                  "short" : "William & Mary"
-               },
-               "rank" : "",
-               "score" : "",
-               "seed" : "",
-               "winner" : false
-            },
-            "bracketId" : "",
-            "bracketRound" : "",
-            "contestClock" : "0:00",
-            "currentPeriod" : "",
-            "finalMessage" : "",
-            "gameID" : "6604692",
-            "gameState" : "pre",
-            "home" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "patriot"
-                  }
-               ],
-               "description" : "",
-               "names" : {
-                  "char6" : "NOVA",
-                  "full" : "",
-                  "seo" : "villanova",
-                  "short" : "Villanova"
-               },
-               "rank" : "",
-               "score" : "",
-               "seed" : "",
-               "winner" : false
-            },
-            "liveVideoEnabled" : false,
-            "network" : "",
-            "startDate" : "08/28/2026",
-            "startTime" : "6:00 PM ET",
-            "startTimeEpoch" : "1787954400",
-            "title" : "William & Mary Villanova",
-            "url" : "/game/6604692"
          }
       },
       {
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "7f00cb96701304ac20227245ffe47520",
+   "inputMD5Sum" : "d0b1492c4e48a1fb18380ac056b8a103",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-28 22:17:02"
+   "updated_at" : "2026-08-28 22:24:32"
 }
