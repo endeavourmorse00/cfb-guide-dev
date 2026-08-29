@@ -1193,15 +1193,15 @@
                   "short" : "Marist"
                },
                "rank" : "",
-               "score" : "14",
+               "score" : "21",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "01:02",
-            "currentPeriod" : "2ND",
-            "finalMessage" : "2ND",
+            "contestClock" : "04:56",
+            "currentPeriod" : "3RD",
+            "finalMessage" : "3RD",
             "gameID" : "6604384",
             "gameState" : "live",
             "home" : {
@@ -1219,7 +1219,7 @@
                   "short" : "New Haven"
                },
                "rank" : "",
-               "score" : "10",
+               "score" : "13",
                "seed" : "",
                "winner" : false
             },
@@ -1249,15 +1249,15 @@
                   "short" : "Rhode Island"
                },
                "rank" : "",
-               "score" : "14",
+               "score" : "21",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "03:04",
-            "currentPeriod" : "2ND",
-            "finalMessage" : "2ND",
+            "contestClock" : "15:00",
+            "currentPeriod" : "3RD",
+            "finalMessage" : "3RD",
             "gameID" : "6604396",
             "gameState" : "live",
             "home" : {
@@ -1311,9 +1311,9 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "13:08",
-            "currentPeriod" : "2ND",
-            "finalMessage" : "2ND",
+            "contestClock" : "07:28",
+            "currentPeriod" : "3RD",
+            "finalMessage" : "3RD",
             "gameID" : "6604549",
             "gameState" : "live",
             "home" : {
@@ -1331,7 +1331,7 @@
                   "short" : "Fordham"
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "14",
                "seed" : "",
                "winner" : false
             },
@@ -1361,15 +1361,15 @@
                   "short" : "William & Mary"
                },
                "rank" : "",
-               "score" : "10",
+               "score" : "13",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "0:00",
-            "currentPeriod" : "HALF",
-            "finalMessage" : "HALF",
+            "contestClock" : "06:54",
+            "currentPeriod" : "3RD",
+            "finalMessage" : "3RD",
             "gameID" : "6604692",
             "gameState" : "live",
             "home" : {
@@ -1423,9 +1423,9 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "04:13",
-            "currentPeriod" : "1ST",
-            "finalMessage" : "1ST",
+            "contestClock" : "02:21",
+            "currentPeriod" : "2ND",
+            "finalMessage" : "2ND",
             "gameID" : "6604904",
             "gameState" : "live",
             "home" : {
@@ -1443,7 +1443,7 @@
                   "short" : "UAlbany"
                },
                "rank" : "",
-               "score" : "6",
+               "score" : "20",
                "seed" : "",
                "winner" : false
             },
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "55452a76292a06cd7e5d6fe02e04a372",
+   "inputMD5Sum" : "9f077ad95cb23dfb798882367fc946f3",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-28 23:28:23"
+   "updated_at" : "2026-08-29 00:07:36"
 }
