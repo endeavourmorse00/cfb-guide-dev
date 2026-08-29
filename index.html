@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0b0f19">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta http-equiv="refresh" content="60">
   <title>College Football TV Guide</title>
   <style>
     *, *::before, *::after {
@@ -380,58 +379,66 @@
     let teamsLookup = {};
     let liveScoresMap = {};
 
+    // Upstream Scoreboard API wrapped with CORS Proxy
+    const SCOREBOARD_API = `https://corsproxy.io/?url=${encodeURIComponent('https://ncaa-api.henrygd.me/scoreboard/football/fcs?year=2026&week=0')}`;
+
     const ALIAS_GROUPS = {
-  "Ole Miss": ["Mississippi", "Rebels", "Ole Miss Rebels", "Univ of Mississippi"],
-  "Pittsburgh": ["Pitt"],
-  "Connecticut": ["UConn"],
-  "NC State": ["North Carolina State"],
-  "UMass": ["Massachusetts"],
-  "USF": ["South Florida"],
-  "FAU": ["Florida Atlantic"],
-  "FIU": ["Florida International"],
-  "UTEP": ["Texas-El Paso"],
-  "UTSA": ["Texas-San Antonio"],
-  "UL Monroe": ["Louisiana-Monroe"],
-  "ULM": ["Louisiana-Monroe"],
-  "Louisiana": ["Louisiana-Lafayette"],
-  "ULL": ["Louisiana-Lafayette"],
-  "Middle Tennessee": ["Middle Tennessee State"],
-  "MTSU": ["Middle Tennessee State"],
-  "WKU": ["Western Kentucky"],
-  "ETSU": ["East Tennessee State"],
-  "NMSU": ["New Mexico State"],
-  "SMU": ["Southern Methodist"],
-  "TCU": ["Texas Christian"],
-  "BYU": ["Brigham Young"],
-  "UCF": ["Central Florida"],
-  "UNLV": ["Nevada-Las Vegas"],
+      "Ole Miss": ["Mississippi", "Rebels", "Ole Miss Rebels", "Univ of Mississippi"],
+      "Pittsburgh": ["Pitt"],
+      "Connecticut": ["UConn"],
+      "NC State": ["North Carolina State"],
+      "UMass": ["Massachusetts"],
+      "USF": ["South Florida"],
+      "FAU": ["Florida Atlantic"],
+      "FIU": ["Florida International"],
+      "UTEP": ["Texas-El Paso"],
+      "UTSA": ["Texas-San Antonio"],
+      "UL Monroe": ["Louisiana-Monroe"],
+      "ULM": ["Louisiana-Monroe"],
+      "Louisiana": ["Louisiana-Lafayette"],
+      "ULL": ["Louisiana-Lafayette"],
+      "Middle Tennessee": ["Middle Tennessee State"],
+      "MTSU": ["Middle Tennessee State"],
+      "WKU": ["Western Kentucky"],
+      "ETSU": ["East Tennessee State"],
+      "NMSU": ["New Mexico State"],
+      "SMU": ["Southern Methodist"],
+      "TCU": ["Texas Christian"],
+      "BYU": ["Brigham Young"],
+      "UCF": ["Central Florida"],
+      "UNLV": ["Nevada-Las Vegas"],
 
-  // Directional & State Variants
-  "Southern Cal": ["USC"],
-  "App State": ["Appalachian State"],
-  "Sam Houston": ["Sam Houston State"],
-  "San Jose State": ["San José State"],
-  "Hawai'i": ["Hawaii"],
-  "Miami (FL)": ["Miami"],
-  "Miami (OH)": ["Miami (Ohio)"],
-  "UL Monroe Warhawks": ["Louisiana-Monroe"],
-  "Southeastern Louisiana": ["SE Louisiana", "Southeast LA", "Southeastern La."],
-  
-  // Punctuation & St. vs Saint
-  "St. Bonaventure": ["Saint Bonaventure"],
-  "Saint Mary's": ["St. Mary's"],
-};
+      // Directional & State Variants
+      "Southern Cal": ["USC"],
+      "App State": ["Appalachian State"],
+      "Sam Houston": ["Sam Houston State"],
+      "San Jose State": ["San José State"],
+      "Hawai'i": ["Hawaii"],
+      "Miami (FL)": ["Miami"],
+      "Miami (OH)": ["Miami (Ohio)"],
+      "UL Monroe Warhawks": ["Louisiana-Monroe"],
+      "Southeastern Louisiana": ["SE Louisiana", "Southeast LA", "Southeastern La."],
+      
+      // Punctuation & St. vs Saint
+      "St. Bonaventure": ["Saint Bonaventure"],
+      "Saint Mary's": ["St. Mary's"]
+    };
 
-// Auto-build the flat lookup object so lookups remain instant: O(1)
-const TEAM_ALIASES = {};
-for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
-  aliases.forEach(alias => {
-    TEAM_ALIASES[alias] = canonical;
-  });
-}
+    // Auto-build flat lookup dictionary
+    const TEAM_ALIASES = {};
+    for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
+      aliases.forEach(alias => {
+        TEAM_ALIASES[alias.toLowerCase().trim()] = canonical;
+      });
+    }
 
     function cleanTeamName(name) {
       if (!name) return '';
+      const trimmed = name.trim().toLowerCase();
+      if (TEAM_ALIASES[trimmed]) {
+        name = TEAM_ALIASES[trimmed];
+      }
+
       return name.toLowerCase()
         .replace(/[\.\']/g, '')
         .replace(/\bst\b/g, 'state')
@@ -511,7 +518,6 @@ for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
       const key1 = `${cAway}_${cHome}`;
       if (liveScoresMap[key1]) return liveScoresMap[key1];
 
-      // Fuzzy check across active entries
       for (const key in liveScoresMap) {
         const item = liveScoresMap[key];
         const sbAway = cleanTeamName(item.awayName);
@@ -587,7 +593,6 @@ for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
         const { away, home } = parseMatchup(game.matchup);
         const live = matchLiveGame(away, home);
 
-        // Determine Game Status Display
         let statusHtml = `<span class="status-badge">${game.time}</span>`;
         let awayScore = '';
         let homeScore = '';
@@ -673,63 +678,7 @@ for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
       });
     }
 
-    async function loadGames() {
-      try {
-        const [gamesRes, teamsRes, scoreRes] = await Promise.all([
-          fetch('games.json'),
-          fetch('teams.json'),
-          fetch('scoreboard.json').catch(() => null)
-        ]);
-
-        const rawGames = await gamesRes.json();
-        teamsLookup = await teamsRes.json();
-
-        if (scoreRes && scoreRes.ok) {
-          const scoreData = await scoreRes.json();
-          if (scoreData && Array.isArray(scoreData.games)) {
-            scoreData.games.forEach(g => {
-              const gm = g.game;
-              if (!gm) return;
-              const awayShort = gm.away?.names?.short || '';
-              const homeShort = gm.home?.names?.short || '';
-              const key = `${cleanTeamName(awayShort)}_${cleanTeamName(homeShort)}`;
-
-              liveScoresMap[key] = {
-                awayName: awayShort,
-                homeName: homeShort,
-                awayScore: gm.away?.score || '',
-                homeScore: gm.home?.score || '',
-                gameState: gm.gameState,
-                period: gm.currentPeriod || gm.finalMessage || '',
-                clock: gm.contestClock || ''
-              };
-            });
-          }
-        }
-
-        allGames = rawGames.map(game => ({
-          ...game,
-          score: computeWatchScore(game.matchup)
-        }));
-
-        if (allGames && allGames.length > 0) {
-          populateDropdowns();
-        }
-
-        renderGames();
-      } catch (err) {
-        console.error('Error loading games data:', err);
-      }
-    }
-
-    // Function to re-fetch only the scoreboard data with cache-busting
-  async function refreshScores() {
-    try {
-      // Adding timestamp parameter prevents the browser from serving cached scores
-      const scoreRes = await fetch(`scoreboard.json?t=${Date.now()}`, { cache: 'no-cache' });
-      if (!scoreRes.ok) return;
-
-      const scoreData = await scoreRes.json();
+    function parseScoreboardPayload(scoreData) {
       if (scoreData && Array.isArray(scoreData.games)) {
         scoreData.games.forEach(g => {
           const gm = g.game;
@@ -748,15 +697,53 @@ for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
             clock: gm.contestClock || ''
           };
         });
-
-        // Re-render the grid with updated scores while keeping current filters intact
-        renderGames();
       }
-    } catch (err) {
-      console.warn('Silent score refresh failed:', err);
-     }
-  }
-  
+    }
+
+    async function loadGames() {
+      try {
+        const [gamesRes, teamsRes, scoreRes] = await Promise.all([
+          fetch('games.json'),
+          fetch('teams.json'),
+          fetch(`${SCOREBOARD_API}&t=${Date.now()}`, { cache: 'no-cache' }).catch(() => null)
+        ]);
+
+        const rawGames = await gamesRes.json();
+        teamsLookup = await teamsRes.json();
+
+        if (scoreRes && scoreRes.ok) {
+          const scoreData = await scoreRes.json();
+          parseScoreboardPayload(scoreData);
+        }
+
+        allGames = rawGames.map(game => ({
+          ...game,
+          score: computeWatchScore(game.matchup)
+        }));
+
+        if (allGames && allGames.length > 0) {
+          populateDropdowns();
+        }
+
+        renderGames();
+      } catch (err) {
+        console.error('Error loading games data:', err);
+      }
+    }
+
+    async function refreshScores() {
+      try {
+        const scoreRes = await fetch(`${SCOREBOARD_API}&t=${Date.now()}`, { cache: 'no-cache' });
+        if (!scoreRes.ok) return;
+
+        const scoreData = await scoreRes.json();
+        parseScoreboardPayload(scoreData);
+        renderGames();
+      } catch (err) {
+        console.warn('Silent score refresh failed:', err);
+      }
+    }
+
     document.getElementById('datePicker').addEventListener('change', renderGames);
     document.getElementById('scoreFilter').addEventListener('change', renderGames);
     document.getElementById('teamFilter').addEventListener('input', renderGames);
@@ -765,7 +752,11 @@ for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
     document.getElementById('timeFilter').addEventListener('change', renderGames);
     document.getElementById('sortBy').addEventListener('change', renderGames);
 
+    // Initial Load
     loadGames();
+
+    // Poll live scores every 30 seconds
+    setInterval(refreshScores, 30000);
   </script>
 </body>
 </html>
