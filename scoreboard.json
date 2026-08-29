@@ -1199,11 +1199,11 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "04:56",
-            "currentPeriod" : "3RD",
-            "finalMessage" : "3RD",
+            "contestClock" : "0:00",
+            "currentPeriod" : "FINAL",
+            "finalMessage" : "FINAL",
             "gameID" : "6604384",
-            "gameState" : "live",
+            "gameState" : "final",
             "home" : {
                "conferences" : [
                   {
@@ -1219,9 +1219,9 @@
                   "short" : "New Haven"
                },
                "rank" : "",
-               "score" : "13",
+               "score" : "22",
                "seed" : "",
-               "winner" : false
+               "winner" : true
             },
             "liveVideoEnabled" : false,
             "network" : "",
@@ -1230,6 +1230,62 @@
             "startTimeEpoch" : "1787954400",
             "title" : "Marist New Haven",
             "url" : "/game/6604384"
+         }
+      },
+      {
+         "game" : {
+            "away" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "patriot"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "COLGAT",
+                  "full" : "",
+                  "seo" : "colgate",
+                  "short" : "Colgate"
+               },
+               "rank" : "",
+               "score" : "24",
+               "seed" : "",
+               "winner" : true
+            },
+            "bracketId" : "",
+            "bracketRound" : "",
+            "contestClock" : "0:00",
+            "currentPeriod" : "FINAL",
+            "finalMessage" : "FINAL",
+            "gameID" : "6604549",
+            "gameState" : "final",
+            "home" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "patriot"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "FORDHM",
+                  "full" : "",
+                  "seo" : "fordham",
+                  "short" : "Fordham"
+               },
+               "rank" : "",
+               "score" : "14",
+               "seed" : "",
+               "winner" : false
+            },
+            "liveVideoEnabled" : false,
+            "network" : "",
+            "startDate" : "08/28/2026",
+            "startTime" : "6:00 PM ET",
+            "startTimeEpoch" : "1787954400",
+            "title" : "Colgate Fordham",
+            "url" : "/game/6604549"
          }
       },
       {
@@ -1249,15 +1305,15 @@
                   "short" : "Rhode Island"
                },
                "rank" : "",
-               "score" : "21",
+               "score" : "27",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "15:00",
-            "currentPeriod" : "3RD",
-            "finalMessage" : "3RD",
+            "contestClock" : "03:09",
+            "currentPeriod" : "4TH",
+            "finalMessage" : "4TH",
             "gameID" : "6604396",
             "gameState" : "live",
             "home" : {
@@ -1299,77 +1355,21 @@
                ],
                "description" : "",
                "names" : {
-                  "char6" : "COLGAT",
-                  "full" : "",
-                  "seo" : "colgate",
-                  "short" : "Colgate"
-               },
-               "rank" : "",
-               "score" : "14",
-               "seed" : "",
-               "winner" : false
-            },
-            "bracketId" : "",
-            "bracketRound" : "",
-            "contestClock" : "07:28",
-            "currentPeriod" : "3RD",
-            "finalMessage" : "3RD",
-            "gameID" : "6604549",
-            "gameState" : "live",
-            "home" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "patriot"
-                  }
-               ],
-               "description" : "",
-               "names" : {
-                  "char6" : "FORDHM",
-                  "full" : "",
-                  "seo" : "fordham",
-                  "short" : "Fordham"
-               },
-               "rank" : "",
-               "score" : "14",
-               "seed" : "",
-               "winner" : false
-            },
-            "liveVideoEnabled" : false,
-            "network" : "",
-            "startDate" : "08/28/2026",
-            "startTime" : "6:00 PM ET",
-            "startTimeEpoch" : "1787954400",
-            "title" : "Colgate Fordham",
-            "url" : "/game/6604549"
-         }
-      },
-      {
-         "game" : {
-            "away" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "patriot"
-                  }
-               ],
-               "description" : "",
-               "names" : {
                   "char6" : "WM&MRY",
                   "full" : "",
                   "seo" : "william-mary",
                   "short" : "William & Mary"
                },
                "rank" : "",
-               "score" : "13",
+               "score" : "22",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "06:54",
-            "currentPeriod" : "3RD",
-            "finalMessage" : "3RD",
+            "contestClock" : "02:43",
+            "currentPeriod" : "4TH",
+            "finalMessage" : "4TH",
             "gameID" : "6604692",
             "gameState" : "live",
             "home" : {
@@ -1387,7 +1387,7 @@
                   "short" : "Villanova"
                },
                "rank" : "",
-               "score" : "17",
+               "score" : "32",
                "seed" : "",
                "winner" : false
             },
@@ -1417,15 +1417,15 @@
                   "short" : "New Hampshire"
                },
                "rank" : "",
-               "score" : "7",
+               "score" : "14",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "02:21",
-            "currentPeriod" : "2ND",
-            "finalMessage" : "2ND",
+            "contestClock" : "06:52",
+            "currentPeriod" : "3RD",
+            "finalMessage" : "3RD",
             "gameID" : "6604904",
             "gameState" : "live",
             "home" : {
@@ -1443,7 +1443,7 @@
                   "short" : "UAlbany"
                },
                "rank" : "",
-               "score" : "20",
+               "score" : "28",
                "seed" : "",
                "winner" : false
             },
@@ -1473,17 +1473,17 @@
                   "short" : "Weber St."
                },
                "rank" : "",
-               "score" : "",
+               "score" : "0",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "0:00",
-            "currentPeriod" : "",
-            "finalMessage" : "",
+            "contestClock" : "12:53",
+            "currentPeriod" : "1ST",
+            "finalMessage" : "1ST",
             "gameID" : "6604558",
-            "gameState" : "pre",
+            "gameState" : "live",
             "home" : {
                "conferences" : [
                   {
@@ -1499,7 +1499,7 @@
                   "short" : "Northern Colo."
                },
                "rank" : "",
-               "score" : "",
+               "score" : "0",
                "seed" : "",
                "winner" : false
             },
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "9f077ad95cb23dfb798882367fc946f3",
+   "inputMD5Sum" : "39889c8ed7e647b27d80d7f11cb9a460",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-29 00:07:36"
+   "updated_at" : "2026-08-29 01:18:49"
 }
