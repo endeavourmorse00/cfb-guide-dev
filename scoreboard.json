@@ -1311,7 +1311,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "03:09",
+            "contestClock" : "00:45",
             "currentPeriod" : "4TH",
             "finalMessage" : "4TH",
             "gameID" : "6604396",
@@ -1423,7 +1423,7 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "06:52",
+            "contestClock" : "02:50",
             "currentPeriod" : "3RD",
             "finalMessage" : "3RD",
             "gameID" : "6604904",
@@ -1473,7 +1473,7 @@
                   "short" : "Weber St."
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "3",
                "seed" : "",
                "winner" : false
             },
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "39889c8ed7e647b27d80d7f11cb9a460",
+   "inputMD5Sum" : "cf489c7c78f8f9663ce2fc3581cdb36c",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-29 01:18:49"
+   "updated_at" : "2026-08-29 01:23:46"
 }
