@@ -1238,6 +1238,62 @@
                "conferences" : [
                   {
                      "conferenceName" : "",
+                     "conferenceSeo" : "caa"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "URI",
+                  "full" : "",
+                  "seo" : "rhode-island",
+                  "short" : "Rhode Island"
+               },
+               "rank" : "",
+               "score" : "34",
+               "seed" : "",
+               "winner" : true
+            },
+            "bracketId" : "",
+            "bracketRound" : "",
+            "contestClock" : "0:00",
+            "currentPeriod" : "FINAL",
+            "finalMessage" : "FINAL",
+            "gameID" : "6604396",
+            "gameState" : "final",
+            "home" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
+                     "conferenceSeo" : "fcs-independent"
+                  }
+               ],
+               "description" : "",
+               "names" : {
+                  "char6" : "MERMCK",
+                  "full" : "",
+                  "seo" : "merrimack",
+                  "short" : "Merrimack"
+               },
+               "rank" : "",
+               "score" : "7",
+               "seed" : "",
+               "winner" : false
+            },
+            "liveVideoEnabled" : false,
+            "network" : "",
+            "startDate" : "08/28/2026",
+            "startTime" : "6:00 PM ET",
+            "startTimeEpoch" : "1787954400",
+            "title" : "Rhode Island Merrimack",
+            "url" : "/game/6604396"
+         }
+      },
+      {
+         "game" : {
+            "away" : {
+               "conferences" : [
+                  {
+                     "conferenceName" : "",
                      "conferenceSeo" : "patriot"
                   }
                ],
@@ -1294,62 +1350,6 @@
                "conferences" : [
                   {
                      "conferenceName" : "",
-                     "conferenceSeo" : "caa"
-                  }
-               ],
-               "description" : "",
-               "names" : {
-                  "char6" : "URI",
-                  "full" : "",
-                  "seo" : "rhode-island",
-                  "short" : "Rhode Island"
-               },
-               "rank" : "",
-               "score" : "34",
-               "seed" : "",
-               "winner" : false
-            },
-            "bracketId" : "",
-            "bracketRound" : "",
-            "contestClock" : "00:40",
-            "currentPeriod" : "4TH",
-            "finalMessage" : "4TH",
-            "gameID" : "6604396",
-            "gameState" : "live",
-            "home" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
-                     "conferenceSeo" : "fcs-independent"
-                  }
-               ],
-               "description" : "",
-               "names" : {
-                  "char6" : "MERMCK",
-                  "full" : "",
-                  "seo" : "merrimack",
-                  "short" : "Merrimack"
-               },
-               "rank" : "",
-               "score" : "7",
-               "seed" : "",
-               "winner" : false
-            },
-            "liveVideoEnabled" : false,
-            "network" : "",
-            "startDate" : "08/28/2026",
-            "startTime" : "6:00 PM ET",
-            "startTimeEpoch" : "1787954400",
-            "title" : "Rhode Island Merrimack",
-            "url" : "/game/6604396"
-         }
-      },
-      {
-         "game" : {
-            "away" : {
-               "conferences" : [
-                  {
-                     "conferenceName" : "",
                      "conferenceSeo" : "patriot"
                   }
                ],
@@ -1361,17 +1361,17 @@
                   "short" : "William & Mary"
                },
                "rank" : "",
-               "score" : "25",
+               "score" : "35",
                "seed" : "",
-               "winner" : false
+               "winner" : true
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "00:53",
-            "currentPeriod" : "4TH",
-            "finalMessage" : "4TH",
+            "contestClock" : "0:00",
+            "currentPeriod" : "FINAL",
+            "finalMessage" : "FINAL",
             "gameID" : "6604692",
-            "gameState" : "live",
+            "gameState" : "final",
             "home" : {
                "conferences" : [
                   {
@@ -1423,9 +1423,9 @@
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "02:50",
-            "currentPeriod" : "3RD",
-            "finalMessage" : "3RD",
+            "contestClock" : "09:34",
+            "currentPeriod" : "4TH",
+            "finalMessage" : "4TH",
             "gameID" : "6604904",
             "gameState" : "live",
             "home" : {
@@ -1473,15 +1473,15 @@
                   "short" : "Weber St."
                },
                "rank" : "",
-               "score" : "3",
+               "score" : "10",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "12:53",
-            "currentPeriod" : "1ST",
-            "finalMessage" : "1ST",
+            "contestClock" : "10:58",
+            "currentPeriod" : "2ND",
+            "finalMessage" : "2ND",
             "gameID" : "6604558",
             "gameState" : "live",
             "home" : {
@@ -1499,7 +1499,7 @@
                   "short" : "Northern Colo."
                },
                "rank" : "",
-               "score" : "0",
+               "score" : "7",
                "seed" : "",
                "winner" : false
             },
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "ac99ec9b41458f7c8980d1b9ac7e989f",
+   "inputMD5Sum" : "55a6e2608bace2cb1afd3e4c7078951f",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-29 01:27:07"
+   "updated_at" : "2026-08-29 01:44:00"
 }
