@@ -1305,13 +1305,13 @@
                   "short" : "Rhode Island"
                },
                "rank" : "",
-               "score" : "27",
+               "score" : "34",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "00:45",
+            "contestClock" : "00:40",
             "currentPeriod" : "4TH",
             "finalMessage" : "4TH",
             "gameID" : "6604396",
@@ -1361,13 +1361,13 @@
                   "short" : "William & Mary"
                },
                "rank" : "",
-               "score" : "22",
+               "score" : "25",
                "seed" : "",
                "winner" : false
             },
             "bracketId" : "",
             "bracketRound" : "",
-            "contestClock" : "02:43",
+            "contestClock" : "00:53",
             "currentPeriod" : "4TH",
             "finalMessage" : "4TH",
             "gameID" : "6604692",
@@ -8009,7 +8009,7 @@
          }
       }
    ],
-   "inputMD5Sum" : "cf489c7c78f8f9663ce2fc3581cdb36c",
+   "inputMD5Sum" : "ac99ec9b41458f7c8980d1b9ac7e989f",
    "instanceId" : "d41d8cd98f00b204e9800998ecf8427e",
-   "updated_at" : "2026-08-29 01:23:46"
+   "updated_at" : "2026-08-29 01:27:07"
 }
