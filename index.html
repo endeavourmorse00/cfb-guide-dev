@@ -379,9 +379,7 @@
     let teamsLookup = {};
     let liveScoresMap = {};
 
-    // Upstream Scoreboard API wrapped with CORS Proxy
-    // Replace with direct endpoint:
-const SCOREBOARD_API = 'https://ncaa-api.henrygd.me/scoreboard/football/fcs?year=2026&week=0';
+    const RAW_SCORE_URL = 'https://ncaa-api.henrygd.me/scoreboard/football/fcs?year=2026&week=0';
 
     const ALIAS_GROUPS = {
       "Ole Miss": ["Mississippi", "Rebels", "Ole Miss Rebels", "Univ of Mississippi"],
@@ -701,21 +699,48 @@ const SCOREBOARD_API = 'https://ncaa-api.henrygd.me/scoreboard/football/fcs?year
       }
     }
 
+    // Proxy-backed fetch with automatic failover
+    async function fetchScoreboardData() {
+      const timestamp = Date.now();
+      const targetUrl = `${RAW_SCORE_URL}&_t=${timestamp}`;
+
+      // Strategy 1: AllOrigins proxy
+      try {
+        const proxyUrl1 = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
+        const res = await fetch(proxyUrl1, { cache: 'no-cache' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.games)) return data;
+        }
+      } catch (e) {
+        console.warn('Proxy 1 failed, trying fallback...');
+      }
+
+      // Strategy 2: CorsProxy fallback
+      try {
+        const proxyUrl2 = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
+        const res = await fetch(proxyUrl2, { cache: 'no-cache' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.games)) return data;
+        }
+      } catch (e) {
+        console.warn('Proxy 2 failed...');
+      }
+
+      return null;
+    }
+
     async function loadGames() {
       try {
-        const [gamesRes, teamsRes, scoreRes] = await Promise.all([
+        // Step 1: Always load schedule and teams first so the UI never breaks
+        const [gamesRes, teamsRes] = await Promise.all([
           fetch('games.json'),
-          fetch('teams.json'),
-          fetch(`${SCOREBOARD_API}&t=${Date.now()}`, { cache: 'no-cache' })
+          fetch('teams.json')
         ]);
 
         const rawGames = await gamesRes.json();
         teamsLookup = await teamsRes.json();
-
-        if (scoreRes && scoreRes.ok) {
-          const scoreData = await scoreRes.json();
-          parseScoreboardPayload(scoreData);
-        }
 
         allGames = rawGames.map(game => ({
           ...game,
@@ -727,6 +752,9 @@ const SCOREBOARD_API = 'https://ncaa-api.henrygd.me/scoreboard/football/fcs?year
         }
 
         renderGames();
+
+        // Step 2: Fetch live scores in the background
+        refreshScores();
       } catch (err) {
         console.error('Error loading games data:', err);
       }
@@ -734,12 +762,11 @@ const SCOREBOARD_API = 'https://ncaa-api.henrygd.me/scoreboard/football/fcs?year
 
     async function refreshScores() {
       try {
-        const scoreRes = await fetch(`${SCOREBOARD_API}&t=${Date.now()}`, { cache: 'no-cache' });
-        if (!scoreRes.ok) return;
-
-        const scoreData = await scoreRes.json();
-        parseScoreboardPayload(scoreData);
-        renderGames();
+        const scoreData = await fetchScoreboardData();
+        if (scoreData) {
+          parseScoreboardPayload(scoreData);
+          renderGames();
+        }
       } catch (err) {
         console.warn('Silent score refresh failed:', err);
       }
