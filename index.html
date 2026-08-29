@@ -380,7 +380,8 @@
     let liveScoresMap = {};
 
     // Upstream Scoreboard API wrapped with CORS Proxy
-    const SCOREBOARD_API = `https://corsproxy.io/?url=${encodeURIComponent('https://ncaa-api.henrygd.me/scoreboard/football/fcs?year=2026&week=0')}`;
+    // Replace with direct endpoint:
+const SCOREBOARD_API = 'https://ncaa-api.henrygd.me/scoreboard/football/fcs?year=2026&week=0';
 
     const ALIAS_GROUPS = {
       "Ole Miss": ["Mississippi", "Rebels", "Ole Miss Rebels", "Univ of Mississippi"],
@@ -705,7 +706,7 @@
         const [gamesRes, teamsRes, scoreRes] = await Promise.all([
           fetch('games.json'),
           fetch('teams.json'),
-          fetch(`${SCOREBOARD_API}&t=${Date.now()}`, { cache: 'no-cache' }).catch(() => null)
+          fetch(`${SCOREBOARD_API}&t=${Date.now()}`, { cache: 'no-cache' })
         ]);
 
         const rawGames = await gamesRes.json();
