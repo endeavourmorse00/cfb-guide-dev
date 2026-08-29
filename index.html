@@ -514,23 +514,53 @@
       return 'score-low';
     }
 
-    function matchLiveGame(away, home) {
+  function matchLiveGame(away, home) {
       const cAway = cleanTeamName(away);
       const cHome = cleanTeamName(home);
-      const key1 = `${cAway}_${cHome}`;
-      if (liveScoresMap[key1]) return liveScoresMap[key1];
 
+      // Direct Match (Away_Home)
+      if (liveScoresMap[`${cAway}_${cHome}`]) {
+        return liveScoresMap[`${cAway}_${cHome}`];
+      }
+
+      // Reversed Order Match (Home_Away)
+      if (liveScoresMap[`${cHome}_${cAway}`]) {
+        const item = liveScoresMap[`${cHome}_${cAway}`];
+        // Flip scores to match card layout
+        return {
+          ...item,
+          awayScore: item.homeScore,
+          homeScore: item.awayScore
+        };
+      }
+
+      // Fuzzy check across all active games in feed
       for (const key in liveScoresMap) {
         const item = liveScoresMap[key];
         const sbAway = cleanTeamName(item.awayName);
         const sbHome = cleanTeamName(item.homeName);
+
+        // Standard direction fuzzy match
         if (
           (cAway.includes(sbAway) || sbAway.includes(cAway)) &&
           (cHome.includes(sbHome) || sbHome.includes(cHome))
         ) {
           return item;
         }
+
+        // Reversed direction fuzzy match
+        if (
+          (cAway.includes(sbHome) || sbHome.includes(cAway)) &&
+          (cHome.includes(sbAway) || sbAway.includes(cHome))
+        ) {
+          return {
+            ...item,
+            awayScore: item.homeScore,
+            homeScore: item.awayScore
+          };
+        }
       }
+
       return null;
     }
 
