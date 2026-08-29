@@ -722,6 +722,41 @@ for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
       }
     }
 
+    // Function to re-fetch only the scoreboard data with cache-busting
+  async function refreshScores() {
+    try {
+      // Adding timestamp parameter prevents the browser from serving cached scores
+      const scoreRes = await fetch(`scoreboard.json?t=${Date.now()}`, { cache: 'no-cache' });
+      if (!scoreRes.ok) return;
+
+      const scoreData = await scoreRes.json();
+      if (scoreData && Array.isArray(scoreData.games)) {
+        scoreData.games.forEach(g => {
+          const gm = g.game;
+          if (!gm) return;
+          const awayShort = gm.away?.names?.short || '';
+          const homeShort = gm.home?.names?.short || '';
+          const key = `${cleanTeamName(awayShort)}_${cleanTeamName(homeShort)}`;
+
+          liveScoresMap[key] = {
+            awayName: awayShort,
+            homeName: homeShort,
+            awayScore: gm.away?.score || '',
+            homeScore: gm.home?.score || '',
+            gameState: gm.gameState,
+            period: gm.currentPeriod || gm.finalMessage || '',
+            clock: gm.contestClock || ''
+          };
+        });
+
+        // Re-render the grid with updated scores while keeping current filters intact
+        renderGames();
+      }
+    } catch (err) {
+      console.warn('Silent score refresh failed:', err);
+     }
+  }
+  
     document.getElementById('datePicker').addEventListener('change', renderGames);
     document.getElementById('scoreFilter').addEventListener('change', renderGames);
     document.getElementById('teamFilter').addEventListener('input', renderGames);
