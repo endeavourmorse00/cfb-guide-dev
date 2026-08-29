@@ -725,17 +725,6 @@
       }
       return null;
     }
-      // Strategy 2: CorsProxy fallback
-      try {
-        const proxyUrl2 = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
-        const res = await fetch(proxyUrl2, { cache: 'no-cache' });
-        if (res.ok) {
-          const data = await res.json();
-          if (data && Array.isArray(data.games)) return data;
-        }
-      } catch (e) {
-        console.warn('Proxy 2 failed...');
-      }
 
       return null;
     }
