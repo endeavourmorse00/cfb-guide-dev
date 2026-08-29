@@ -383,6 +383,7 @@
     const SCOREBOARD_API = 'https://polished-darkness-803e.smdesforges.workers.dev';
 
     const ALIAS_GROUPS = {
+      "North Carolina": ["UNC"],
       "Ole Miss": ["Mississippi", "Rebels", "Ole Miss Rebels", "Univ of Mississippi"],
       "Pittsburgh": ["Pitt"],
       "Connecticut": ["UConn"],
@@ -407,8 +408,6 @@
       "BYU": ["Brigham Young"],
       "UCF": ["Central Florida"],
       "UNLV": ["Nevada-Las Vegas"],
-      "North Carolina": ["UNC"],
-      "TCU": ["Texas Christian"],
 
       // Directional & State Variants
       "Southern Cal": ["USC"],
@@ -514,7 +513,7 @@
       return 'score-low';
     }
 
-  function matchLiveGame(away, home) {
+    function matchLiveGame(away, home) {
       const cAway = cleanTeamName(away);
       const cHome = cleanTeamName(home);
 
@@ -526,7 +525,6 @@
       // Reversed Order Match (Home_Away)
       if (liveScoresMap[`${cHome}_${cAway}`]) {
         const item = liveScoresMap[`${cHome}_${cAway}`];
-        // Flip scores to match card layout
         return {
           ...item,
           awayScore: item.homeScore,
@@ -630,12 +628,14 @@
         let homeScore = '';
 
         if (live) {
-          if (live.gameState === 'live') {
+          const state = (live.gameState || '').toLowerCase();
+
+          if (state === 'live' || state === 'in_progress' || state === 'inprogress') {
             const clock = (live.clock && live.clock !== ':') ? ` ${live.clock}` : '';
             statusHtml = `<span class="status-badge status-live">🔴 ${live.period}${clock}</span>`;
-            awayScore = live.awayScore ?? '';
-            homeScore = live.homeScore ?? '';
-          } else if (live.gameState === 'final') {
+            awayScore = live.awayScore !== '' ? live.awayScore : '0';
+            homeScore = live.homeScore !== '' ? live.homeScore : '0';
+          } else if (state === 'final' || state === 'f') {
             statusHtml = `<span class="status-badge status-final">FINAL</span>`;
             awayScore = live.awayScore ?? '';
             homeScore = live.homeScore ?? '';
@@ -710,11 +710,9 @@
       });
     }
 
-function parseScoreboardPayload(scoreData) {
+    function parseScoreboardPayload(scoreData) {
       if (scoreData && Array.isArray(scoreData.games)) {
         const nextScores = {};
-
-        console.log(`--- [Scoreboard API] Loaded ${scoreData.games.length} games ---`);
 
         scoreData.games.forEach(g => {
           const gm = g.game;
@@ -722,8 +720,6 @@ function parseScoreboardPayload(scoreData) {
           const awayShort = gm.away?.names?.short || '';
           const homeShort = gm.home?.names?.short || '';
           const key = `${cleanTeamName(awayShort)}_${cleanTeamName(homeShort)}`;
-
-          console.log(`API Key: "${key}" | Away: "${awayShort}" (${gm.away?.score || '0'}) vs Home: "${homeShort}" (${gm.home?.score || '0'}) | State: ${gm.gameState}`);
 
           nextScores[key] = {
             awayName: awayShort,
@@ -740,27 +736,6 @@ function parseScoreboardPayload(scoreData) {
       }
     }
 
-    function matchLiveGame(away, home) {
-      const cAway = cleanTeamName(away);
-      const cHome = cleanTeamName(home);
-      const key1 = `${cAway}_${cHome}`;
-      if (liveScoresMap[key1]) return liveScoresMap[key1];
-
-      for (const key in liveScoresMap) {
-        const item = liveScoresMap[key];
-        const sbAway = cleanTeamName(item.awayName);
-        const sbHome = cleanTeamName(item.homeName);
-        if (
-          (cAway.includes(sbAway) || sbAway.includes(cAway)) &&
-          (cHome.includes(sbHome) || sbHome.includes(cHome))
-        ) {
-          return item;
-        }
-      }
-
-      console.warn(`[No Match] Card: "${away}" vs "${home}" -> cleaned: "${cAway}_${cHome}"`);
-      return null;
-    }
     async function fetchScoreboardData() {
       try {
         const res = await fetch(`${SCOREBOARD_API}?_t=${Date.now()}`, {
