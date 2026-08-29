@@ -704,7 +704,6 @@
       }
     }
 
-    // Proxy-backed fetch with automatic failover
     async function fetchScoreboardData() {
       try {
         const res = await fetch(`${SCOREBOARD_API}?_t=${Date.now()}`, {
@@ -723,9 +722,6 @@
       } catch (err) {
         console.warn('Scoreboard fetch error:', err);
       }
-      return null;
-    }
-
       return null;
     }
 
