@@ -108,6 +108,12 @@
   },
   {
     "date": "2026-09-03",
+    "matchup": "Bethune-Cookman at UCF",
+    "time": "06:00 pm",
+    "network": "ESPN+"
+  },
+  {
+    "date": "2026-09-03",
     "matchup": "Arkansas-Pine Bluff at Missouri",
     "time": "07:00 pm",
     "network": "SEC Network"
@@ -230,7 +236,7 @@
     "date": "2026-09-05",
     "matchup": "Miami (OH) at Pitt",
     "time": "11:30 am",
-    "network": "ESPN Unlimited and The CW Network"
+    "network": "ESPN Unlimited and CW"
   },
   {
     "date": "2026-09-05",
@@ -338,7 +344,7 @@
     "date": "2026-09-05",
     "matchup": "Fordham at North Dakota State",
     "time": "02:30 pm",
-    "network": "ESPN Unlimited and The CW Network"
+    "network": "ESPN Unlimited and CW"
   },
   {
     "date": "2026-09-05",
@@ -548,7 +554,7 @@
     "date": "2026-09-05",
     "matchup": "UNLV at Hawai'i",
     "time": "09:00 pm",
-    "network": "ESPN Unlimited and The CW Network"
+    "network": "ESPN Unlimited and CW"
   },
   {
     "date": "2026-09-05",
