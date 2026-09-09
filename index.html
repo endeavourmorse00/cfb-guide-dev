@@ -401,9 +401,10 @@
   <script>
     let allGames = [];
     let teamsLookup = {};
+    let currentSeasonYear = null;
+    let currentWeekNumber = null;
 
-    // Direct browser fetch from ESPN (groups=80 pulls all FBS games)
-    const SCOREBOARD_API = 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=100';
+    const BASE_ESPN_API = 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300';
 
     const ALIAS_GROUPS = {
       "North Carolina": ["UNC"],
@@ -559,7 +560,6 @@
       const homeScore = homeTeamObj.score !== undefined ? homeTeamObj.score : '';
       const awayScore = awayTeamObj.score !== undefined ? awayTeamObj.score : '';
 
-      // Central Time conversion
       const rawDate = new Date(event.date);
       const centralDateStr = new Intl.DateTimeFormat('en-CA', {
         timeZone: 'America/Chicago',
@@ -580,13 +580,11 @@
         }).format(rawDate).toLowerCase();
       }
 
-      // Broadcast Network
       let network = 'TBD';
       if (comp.broadcasts && comp.broadcasts.length > 0 && comp.broadcasts[0].names) {
         network = comp.broadcasts[0].names[0] || 'TBD';
       }
 
-      // Betting Odds
       let spread = 'N/A';
       let overUnder = 'N/A';
       if (comp.odds && comp.odds.length > 0) {
@@ -597,7 +595,6 @@
 
       const state = event.status?.type?.state || 'pre';
       const shortDetail = event.status?.type?.shortDetail || timeFormatted;
-
       const score = computeWatchScore(awayName, homeName);
 
       return {
@@ -769,49 +766,84 @@
       networkSelect.value = currentNetVal;
     }
 
-    async function fetchScoreboardData() {
+    async function fetchUrl(url) {
       try {
-        const res = await fetch(`${SCOREBOARD_API}&_t=${Date.now()}`);
-        if (!res.ok) {
-          console.warn(`ESPN returned status: ${res.status}`);
-          return null;
-        }
+        const res = await fetch(url);
+        if (!res.ok) return null;
         return await res.json();
       } catch (err) {
-        console.warn('Scoreboard fetch error:', err);
+        return null;
       }
-      return null;
     }
 
     async function loadGames() {
       try {
-        // Fetch teams ratings lookup table
+        // Load teams lookup
         const teamsRes = await fetch('teams.json');
         teamsLookup = await teamsRes.json();
 
-        // Load schedule & live board directly from ESPN
-        await refreshScores(true);
+        // 1. Fetch current week's scoreboard
+        const currentPayload = await fetchUrl(`${BASE_ESPN_API}&_t=${Date.now()}`);
+        if (!currentPayload) return;
+
+        currentSeasonYear = currentPayload.season?.year || new Date().getFullYear();
+        currentWeekNumber = currentPayload.week?.number || 1;
+
+        const gamesMap = new Map();
+
+        // Parse current games
+        if (Array.isArray(currentPayload.events)) {
+          currentPayload.events.forEach(ev => {
+            const parsed = parseEspnGame(ev);
+            if (parsed) gamesMap.set(parsed.id, parsed);
+          });
+        }
+
+        // 2. Fetch all prior regular season weeks (Week 1 through currentWeek - 1)
+        if (currentWeekNumber > 1) {
+          const priorWeekRequests = [];
+          for (let w = 1; w < currentWeekNumber; w++) {
+            const weekUrl = `${BASE_ESPN_API}&seasontype=2&week=${w}&year=${currentSeasonYear}`;
+            priorWeekRequests.push(fetchUrl(weekUrl));
+          }
+
+          const priorWeekPayloads = await Promise.all(priorWeekRequests);
+          priorWeekPayloads.forEach(payload => {
+            if (payload && Array.isArray(payload.events)) {
+              payload.events.forEach(ev => {
+                const parsed = parseEspnGame(ev);
+                if (parsed && !gamesMap.has(parsed.id)) {
+                  gamesMap.set(parsed.id, parsed);
+                }
+              });
+            }
+          });
+        }
+
+        allGames = Array.from(gamesMap.values());
+
+        populateDropdowns();
+        renderGames();
       } catch (err) {
-        console.error('Error loading data:', err);
+        console.error('Error initializing games:', err);
       }
     }
 
-    async function refreshScores(isInitial = false) {
+    async function refreshCurrentWeekScores() {
       try {
-        const espnPayload = await fetchScoreboardData();
-        if (espnPayload && Array.isArray(espnPayload.events)) {
-          allGames = espnPayload.events
-            .map(parseEspnGame)
-            .filter(Boolean);
-
-          if (isInitial && allGames.length > 0) {
-            populateDropdowns();
-          }
+        // Only refresh the active week to keep polling lightweight
+        const currentPayload = await fetchUrl(`${BASE_ESPN_API}&_t=${Date.now()}`);
+        if (currentPayload && Array.isArray(currentPayload.events)) {
+          const updatedCurrentGames = currentPayload.events.map(parseEspnGame).filter(Boolean);
+          
+          const gamesMap = new Map(allGames.map(g => [g.id, g]));
+          updatedCurrentGames.forEach(g => gamesMap.set(g.id, g));
+          allGames = Array.from(gamesMap.values());
 
           renderGames();
         }
       } catch (err) {
-        console.warn('Silent score refresh failed:', err);
+        console.warn('Live score refresh failed:', err);
       }
     }
 
@@ -823,11 +855,11 @@
     document.getElementById('timeFilter').addEventListener('change', renderGames);
     document.getElementById('sortBy').addEventListener('change', renderGames);
 
-    // Initial Load
+    // Initial Full Season Load
     loadGames();
 
-    // Poll live scores and updates every 30 seconds
-    setInterval(() => refreshScores(false), 30000);
+    // Poll live scores on the current week every 30 seconds
+    setInterval(refreshCurrentWeekScores, 30000);
   </script>
 </body>
 </html>
