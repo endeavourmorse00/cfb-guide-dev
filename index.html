@@ -298,6 +298,31 @@
       text-align: right;
     }
 
+    /* Card Footer: Betting Odds */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(51, 65, 85, 0.4);
+      padding-top: 5px;
+      margin-top: 2px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .odds-item {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .odds-label {
+      color: #64748b;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.03em;
+    }
+
     .no-games {
       grid-column: 1 / -1;
       text-align: center;
@@ -306,13 +331,12 @@
       font-size: 1rem;
     }
   </style>
-  <script data-goatcounter="https://cfb-guide.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+  <script data-goatcounter="https://cfb-guide.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <header>
     <h1>College 🏈 TV Guide</h1>
-    <p>Some FCS and G6 games are omitted. Neutral site games appear without site location. All times Central.</p>
+    <p>All times Central. Neutral site games appear without site location.</p>
   </header>
 
   <div class="controls">
@@ -377,10 +401,9 @@
   <script>
     let allGames = [];
     let teamsLookup = {};
-    let liveScoresMap = {};
 
-    // Your live Cloudflare Worker proxy
-    const SCOREBOARD_API = 'https://polished-darkness-803e.smdesforges.workers.dev';
+    // Direct browser fetch from ESPN (groups=80 pulls all FBS games)
+    const SCOREBOARD_API = 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=100';
 
     const ALIAS_GROUPS = {
       "North Carolina": ["UNC"],
@@ -389,57 +412,44 @@
       "Connecticut": ["UConn"],
       "NC State": ["North Carolina State"],
       "UMass": ["Massachusetts"],
-      "USF": ["South Florida"],
-      "FAU": ["Florida Atlantic"],
-      "FIU": ["Florida International"],
+      "South Florida": ["South Fla.", "USF"],
+      "Florida Atlantic": ["Fla. Atlantic", "FAU"],
+      "Florida International": ["FIU"],
       "UTEP": ["Texas-El Paso"],
       "UTSA": ["Texas-San Antonio"],
-      "UL Monroe": ["Louisiana-Monroe", "ULM"],
-      "Louisiana": ["Louisiana-Lafayette", "ULL"],
-      "Middle Tennessee": ["Middle Tennessee State", "Middle Tennessee St."],
-      "WKU": ["Western Kentucky"],
-      "ETSU": ["East Tennessee State"],
-      "NMSU": ["New Mexico State", "New Mexico St."],
-      "SMU": ["Southern Methodist"],
+      "UL Monroe": ["Louisiana-Monroe", "ULM", "UL Monroe Warhawks"],
+      "Louisiana": ["Louisiana-Lafayette", "ULL", "Louisiana Lafayette", "Louisiana Ragin' Cajuns"],
+      "Middle Tennessee": ["Middle Tennessee State", "MTSU"],
+      "Western Kentucky": ["Western Ky.", "WKU"],
+      "East Tennessee State": ["ETSU"],
+      "New Mexico State": ["New Mexico St.", "NMSU", "New Mexico St"],
+      "Florida State": ["Florida St.", "FSU", "Florida St"],
+      "Southern Methodist": ["SMU"],
       "TCU": ["Texas Christian"],
       "BYU": ["Brigham Young"],
       "UCF": ["Central Florida"],
       "UNLV": ["Nevada-Las Vegas"],
-      "Arkansas-Pine Bluff": ["Ark.-Pine Bluff"],
-      "LIU": ["Long Island", "Long Island University"],
-      "Sacramento State": ["Sac State", "Sacramento St."],
-      "Michigan State": ["Michigan St."],
-      "Louisiana Tech": ["Louisiana Tech University", "La. Tech"],
-      "Fresno State": ["Fresno St."],
-      "San Diego State": ["San Diego St.", "SDSU"],
-      "Army": ["Army West Point", "Army Black Knights"],
-      "Air Force": ["Air Force Academy", "Air Force Falcons"],
-
-      // Directional & State Variants
-      "Southern California": ["USC", "Southern Cal"],
+      "Southern Cal": ["USC", "Southern California"],
       "App State": ["Appalachian State"],
       "Sam Houston": ["Sam Houston State"],
-      "San Jose State": ["San José State", "San Jose St."],
+      "San Jose State": ["San José State"],
       "Hawai'i": ["Hawaii"],
       "Miami (FL)": ["Miami"],
       "Miami (OH)": ["Miami (Ohio)"],
-      "UL Monroe Warhawks": ["Louisiana-Monroe"],
-      "Southeastern Louisiana": ["SE Louisiana", "Southeast LA", "Southeastern La."],
-      "Eastern Michigan": ["Eastern Mich.", "E Michigan"],
-      "Indiana State": ["Indiana St."],
-      "Oregon State": ["Oregon St."],
-      "Ohio State": ["Ohio St."],
-      "Ball State": ["Ball St."],
-      "Western Michigan": ["Western Mich.", "W Michigan"],
-      "Northern Illinois": ["Northern Ill.", "N Illinois"],
-      "Southern Illinois": ["Southern Ill.", "S Illinois"],
-      
-      // Punctuation & St. vs Saint
+      "Southeastern Louisiana": [
+        "SE Louisiana", "Southeast LA", "Southeastern La.", "Southeastern La", 
+        "SE La.", "SE La", "SE Louisiana Lions", "SLU"
+      ],
+      "Southeast Missouri State": ["Southeast Mo. St."],
+      "UT Rio Grande Valley": ["UTRGV"],
+      "Northern Illinois": ["NIU"],
+      "South Alabama": [
+        "USA", "South Al.", "South Ala.", "South Ala", "S. Alabama", "S Alabama"
+      ],
       "St. Bonaventure": ["Saint Bonaventure"],
       "Saint Mary's": ["St. Mary's"]
     };
 
-    // Auto-build flat lookup dictionary
     const TEAM_ALIASES = {};
     for (const [canonical, aliases] of Object.entries(ALIAS_GROUPS)) {
       aliases.forEach(alias => {
@@ -458,6 +468,9 @@
         .replace(/[\.\']/g, '')
         .replace(/\bst\b/g, 'state')
         .replace(/\bso\b/g, 'southern')
+        .replace(/\bse\b/g, 'southeastern')
+        .replace(/\bla\b/g, 'louisiana')
+        .replace(/\bala\b/g, 'alabama')
         .replace(/\bga\b/g, 'georgia')
         .replace(/\bfla\b/g, 'florida')
         .replace(/\bill\b/g, 'illinois')
@@ -468,19 +481,22 @@
         .trim();
     }
 
-    function parseMatchup(matchupStr) {
-      if (!matchupStr) return { away: '', home: '' };
-      const parts = matchupStr.split(/\s+(?:at|vs\.?)\s+/i);
-      return {
-        away: parts[0] ? parts[0].trim() : '',
-        home: parts[1] ? parts[1].trim() : ''
-      };
+    function findTeamData(teamName) {
+      if (!teamName) return { teamValue: 0, confValue: 0, conference: 'ZERO' };
+      if (teamsLookup[teamName]) return teamsLookup[teamName];
+
+      const cleaned = cleanTeamName(teamName);
+      for (const [key, val] of Object.entries(teamsLookup)) {
+        if (cleanTeamName(key) === cleaned) {
+          return val;
+        }
+      }
+      return { teamValue: 0, confValue: 0, conference: 'ZERO' };
     }
 
-    function computeWatchScore(matchupStr) {
-      const { away, home } = parseMatchup(matchupStr);
-      const awayData = teamsLookup[away] || { teamValue: 0, confValue: 0, conference: 'ZERO' };
-      const homeData = teamsLookup[home] || { teamValue: 0, confValue: 0, conference: 'ZERO' };
+    function computeWatchScore(awayName, homeName) {
+      const awayData = findTeamData(awayName);
+      const homeData = findTeamData(homeName);
       return (awayData.teamValue || 0) + (awayData.confValue || 0) + (homeData.teamValue || 0) + (homeData.confValue || 0);
     }
 
@@ -498,12 +514,15 @@
     function getNearestFutureDate(games) {
       if (!games || games.length === 0) return '';
       const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const todayStr = `${year}-${month}-${day}`;
+      const centralDateStr = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(now);
+
       const uniqueDates = [...new Set(games.map(g => g.date))].sort();
-      const nextFutureDate = uniqueDates.find(d => d >= todayStr);
+      const nextFutureDate = uniqueDates.find(d => d >= centralDateStr);
       return nextFutureDate || uniqueDates[uniqueDates.length - 1];
     }
 
@@ -527,53 +546,76 @@
       return 'score-low';
     }
 
-    function matchLiveGame(away, home) {
-      const cAway = cleanTeamName(away);
-      const cHome = cleanTeamName(home);
+    function parseEspnGame(event) {
+      const comp = event.competitions && event.competitions[0];
+      if (!comp) return null;
 
-      // Direct Match (Away_Home)
-      if (liveScoresMap[`${cAway}_${cHome}`]) {
-        return liveScoresMap[`${cAway}_${cHome}`];
+      const competitors = comp.competitors || [];
+      const homeTeamObj = competitors.find(c => c.homeAway === 'home') || {};
+      const awayTeamObj = competitors.find(c => c.homeAway === 'away') || {};
+
+      const homeName = homeTeamObj.team?.location || homeTeamObj.team?.displayName || 'Home';
+      const awayName = awayTeamObj.team?.location || awayTeamObj.team?.displayName || 'Away';
+      const homeScore = homeTeamObj.score !== undefined ? homeTeamObj.score : '';
+      const awayScore = awayTeamObj.score !== undefined ? awayTeamObj.score : '';
+
+      // Central Time conversion
+      const rawDate = new Date(event.date);
+      const centralDateStr = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(rawDate);
+
+      let timeFormatted = 'TBD';
+      if (!event.timeValid && event.status?.type?.detail === 'TBD') {
+        timeFormatted = 'TBD';
+      } else {
+        timeFormatted = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/Chicago',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        }).format(rawDate).toLowerCase();
       }
 
-      // Reversed Order Match (Home_Away)
-      if (liveScoresMap[`${cHome}_${cAway}`]) {
-        const item = liveScoresMap[`${cHome}_${cAway}`];
-        return {
-          ...item,
-          awayScore: item.homeScore,
-          homeScore: item.awayScore
-        };
+      // Broadcast Network
+      let network = 'TBD';
+      if (comp.broadcasts && comp.broadcasts.length > 0 && comp.broadcasts[0].names) {
+        network = comp.broadcasts[0].names[0] || 'TBD';
       }
 
-      // Fuzzy check across all active games in feed
-      for (const key in liveScoresMap) {
-        const item = liveScoresMap[key];
-        const sbAway = cleanTeamName(item.awayName);
-        const sbHome = cleanTeamName(item.homeName);
-
-        // Standard direction fuzzy match
-        if (
-          (cAway.includes(sbAway) || sbAway.includes(cAway)) &&
-          (cHome.includes(sbHome) || sbHome.includes(cHome))
-        ) {
-          return item;
-        }
-
-        // Reversed direction fuzzy match
-        if (
-          (cAway.includes(sbHome) || sbHome.includes(cAway)) &&
-          (cHome.includes(sbAway) || sbAway.includes(cHome))
-        ) {
-          return {
-            ...item,
-            awayScore: item.homeScore,
-            homeScore: item.awayScore
-          };
-        }
+      // Betting Odds
+      let spread = 'N/A';
+      let overUnder = 'N/A';
+      if (comp.odds && comp.odds.length > 0) {
+        const oddsObj = comp.odds[0];
+        spread = oddsObj.details || 'N/A';
+        overUnder = oddsObj.overUnder !== undefined ? `O/U ${oddsObj.overUnder}` : 'N/A';
       }
 
-      return null;
+      const state = event.status?.type?.state || 'pre';
+      const shortDetail = event.status?.type?.shortDetail || timeFormatted;
+
+      const score = computeWatchScore(awayName, homeName);
+
+      return {
+        id: event.id,
+        date: centralDateStr,
+        time: timeFormatted,
+        network: network,
+        away: awayName,
+        home: homeName,
+        matchup: `${awayName} at ${homeName}`,
+        awayScore: awayScore,
+        homeScore: homeScore,
+        state: state,
+        statusDetail: shortDetail,
+        spread: spread,
+        overUnder: overUnder,
+        score: score
+      };
     }
 
     function renderGames() {
@@ -595,9 +637,8 @@
 
         let matchesConf = true;
         if (selectedConf) {
-          const { away, home } = parseMatchup(game.matchup);
-          const awayConf = teamsLookup[away]?.conference || '';
-          const homeConf = teamsLookup[home]?.conference || '';
+          const awayConf = findTeamData(game.away)?.conference || '';
+          const homeConf = findTeamData(game.home)?.conference || '';
           matchesConf = (awayConf === selectedConf || homeConf === selectedConf);
         }
 
@@ -634,26 +675,18 @@
       }
 
       filtered.forEach(game => {
-        const { away, home } = parseMatchup(game.matchup);
-        const live = matchLiveGame(away, home);
-
         let statusHtml = `<span class="status-badge">${game.time}</span>`;
         let awayScore = '';
         let homeScore = '';
 
-        if (live) {
-          const state = (live.gameState || '').toLowerCase();
-
-          if (state === 'live' || state === 'in_progress' || state === 'inprogress') {
-            const clock = (live.clock && live.clock !== ':') ? ` ${live.clock}` : '';
-            statusHtml = `<span class="status-badge status-live">🔴 ${live.period}${clock}</span>`;
-            awayScore = live.awayScore !== '' ? live.awayScore : '0';
-            homeScore = live.homeScore !== '' ? live.homeScore : '0';
-          } else if (state === 'final' || state === 'f') {
-            statusHtml = `<span class="status-badge status-final">FINAL</span>`;
-            awayScore = live.awayScore ?? '';
-            homeScore = live.homeScore ?? '';
-          }
+        if (game.state === 'in') {
+          statusHtml = `<span class="status-badge status-live">🔴 ${game.statusDetail}</span>`;
+          awayScore = game.awayScore !== '' ? game.awayScore : '0';
+          homeScore = game.homeScore !== '' ? game.homeScore : '0';
+        } else if (game.state === 'post') {
+          statusHtml = `<span class="status-badge status-final">${game.statusDetail || 'FINAL'}</span>`;
+          awayScore = game.awayScore ?? '';
+          homeScore = game.homeScore ?? '';
         }
 
         const scoreClass = getScoreClass(game.score || 0);
@@ -667,13 +700,17 @@
           </div>
           <div class="teams-container">
             <div class="team-row">
-              <span class="team-name">${away || 'Away'}</span>
+              <span class="team-name">${game.away}</span>
               <span class="team-score">${awayScore}</span>
             </div>
             <div class="team-row">
-              <span class="team-name">${home || 'Home'}</span>
+              <span class="team-name">${game.home}</span>
               <span class="team-score">${homeScore}</span>
             </div>
+          </div>
+          <div class="card-footer">
+            <div class="odds-item"><span class="odds-label">Line:</span> <span>${game.spread}</span></div>
+            <div class="odds-item"><span class="odds-label">Total:</span> <span>${game.overUnder}</span></div>
           </div>
         `;
         grid.appendChild(card);
@@ -692,6 +729,7 @@
 
       const uniqueDates = [...new Set(allGames.map(g => g.date))].sort();
       const dateSelect = document.getElementById('datePicker');
+      const currentDateVal = dateSelect.value;
       dateSelect.innerHTML = '<option value="">All Dates</option>';
       uniqueDates.forEach(date => {
         const option = document.createElement('option');
@@ -699,7 +737,12 @@
         option.textContent = formatDateLabel(date);
         dateSelect.appendChild(option);
       });
-      dateSelect.value = getNearestFutureDate(allGames);
+
+      if (!currentDateVal) {
+        dateSelect.value = getNearestFutureDate(allGames);
+      } else {
+        dateSelect.value = currentDateVal;
+      }
 
       const confSelect = document.getElementById('confFilter');
       const uniqueConfs = [...new Set(
@@ -714,6 +757,7 @@
       });
 
       const networkSelect = document.getElementById('networkFilter');
+      const currentNetVal = networkSelect.value;
       const uniqueNetworks = [...new Set(allGames.map(g => g.network).filter(Boolean))].sort();
       networkSelect.innerHTML = '<option value="">All Networks</option>';
       uniqueNetworks.forEach(net => {
@@ -722,49 +766,17 @@
         option.textContent = net;
         networkSelect.appendChild(option);
       });
-    }
-
-    function parseScoreboardPayload(scoreData) {
-      if (scoreData && Array.isArray(scoreData.games)) {
-        const nextScores = {};
-
-        scoreData.games.forEach(g => {
-          const gm = g.game;
-          if (!gm) return;
-          const awayShort = gm.away?.names?.short || '';
-          const homeShort = gm.home?.names?.short || '';
-          const key = `${cleanTeamName(awayShort)}_${cleanTeamName(homeShort)}`;
-
-          nextScores[key] = {
-            awayName: awayShort,
-            homeName: homeShort,
-            awayScore: gm.away?.score || '',
-            homeScore: gm.home?.score || '',
-            gameState: gm.gameState,
-            period: gm.currentPeriod || gm.finalMessage || '',
-            clock: gm.contestClock || ''
-          };
-        });
-
-        liveScoresMap = nextScores;
-      }
+      networkSelect.value = currentNetVal;
     }
 
     async function fetchScoreboardData() {
       try {
-        const res = await fetch(`${SCOREBOARD_API}?_t=${Date.now()}`, {
-          cache: 'no-store'
-        });
-
+        const res = await fetch(`${SCOREBOARD_API}&_t=${Date.now()}`);
         if (!res.ok) {
-          console.warn(`Worker returned status: ${res.status}`);
+          console.warn(`ESPN returned status: ${res.status}`);
           return null;
         }
-
-        const data = await res.json();
-        if (data && Array.isArray(data.games)) {
-          return data;
-        }
+        return await res.json();
       } catch (err) {
         console.warn('Scoreboard fetch error:', err);
       }
@@ -773,38 +785,29 @@
 
     async function loadGames() {
       try {
-        // Step 1: Always load schedule and teams first so the UI never breaks
-        const [gamesRes, teamsRes] = await Promise.all([
-          fetch('games.json'),
-          fetch('teams.json')
-        ]);
-
-        const rawGames = await gamesRes.json();
+        // Fetch teams ratings lookup table
+        const teamsRes = await fetch('teams.json');
         teamsLookup = await teamsRes.json();
 
-        allGames = rawGames.map(game => ({
-          ...game,
-          score: computeWatchScore(game.matchup)
-        }));
-
-        if (allGames && allGames.length > 0) {
-          populateDropdowns();
-        }
-
-        renderGames();
-
-        // Step 2: Fetch live scores in the background
-        refreshScores();
+        // Load schedule & live board directly from ESPN
+        await refreshScores(true);
       } catch (err) {
-        console.error('Error loading games data:', err);
+        console.error('Error loading data:', err);
       }
     }
 
-    async function refreshScores() {
+    async function refreshScores(isInitial = false) {
       try {
-        const scoreData = await fetchScoreboardData();
-        if (scoreData) {
-          parseScoreboardPayload(scoreData);
+        const espnPayload = await fetchScoreboardData();
+        if (espnPayload && Array.isArray(espnPayload.events)) {
+          allGames = espnPayload.events
+            .map(parseEspnGame)
+            .filter(Boolean);
+
+          if (isInitial && allGames.length > 0) {
+            populateDropdowns();
+          }
+
           renderGames();
         }
       } catch (err) {
@@ -823,8 +826,8 @@
     // Initial Load
     loadGames();
 
-    // Poll live scores every 30 seconds
-    setInterval(refreshScores, 30000);
+    // Poll live scores and updates every 30 seconds
+    setInterval(() => refreshScores(false), 30000);
   </script>
 </body>
 </html>
